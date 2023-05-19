@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-JSS4ZWB32V"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-JSS4ZWB32V');
+		</script>		
+		<title>Onespace</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/badge.css">
+	</head>
+	<body>
+		<section class="section column-section section-bio">
+		<img src="assets/images/polyhedron.png" class="logo">
+		<figure class="logo"></figure>
+			<p class="bio">“We always think there's enough time to do things with other people. Time to say things to them. And then something happens and then we stand there holding on to words like 'if'. ”</p>
+		</section>
+		<section class="section column-section-main">
+			<div class="col-section">
+				<h2 class="main-text">Çalışmalar</h2>
+				<dl class="list">
+					<dt class="main-text main-text-small">Oy Sayma Sitesi</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">suleymanaslim.live/oysayma</a>
+					</dd>
+					<!--
+					<dt class="main-text main-text-small">Apple</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">apple.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Google</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">google.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Microsoft</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">microsoft.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Mashable</dt>
+						<dd class="list-item">
+						<a class="list-link" href="#">mashable.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Vox</dt>
+						<dd class="list-item">
+						<a class="list-link" href="#">vox.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Nike</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">nike.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Polygon</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">polygon.com</a>
+					</dd>
+					<dt class="main-text main-text-small">The North Face</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">thenorthface.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Patagonia</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">patagonia.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Supreme</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">supremenewyork.com</a>
+					</dd>
+				</dl>
+			</div>
+			<div class="col-section">
+			  <h2 class="main-text">Awards</h2>
+				<dl class="list">
+					<dt class="main-text main-text-small">AIGA Fellow Award</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">aiga.org</a>
+					</dd>
+					<dt class="main-text main-text-small">Best Design Ever Award</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">bde.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Trendy Web Design Award</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">twda.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Awwwards Site of the Day</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">awwwards.com</a>
+					</dd>
+					<dt class="main-text main-text-small">CSSDA Website of the Day</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">cssdesignawards.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Best in Design Award</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">bda.com</a>
+					</dd>
+					<dt class="main-text main-text-small">FWA of the Year</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">thefwa.com</a>
+					</dd>
+					<dt class="main-text main-text-small">OPL Most Loved Award</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">onepagelove.com</a>
+					</dd>
+					<dt class="main-text main-text-small">W3 Best in Show</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">w3award.com</a>
+					</dd>
+					<dt class="main-text main-text-small">Top Web Design Award</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">twda.com</a>
+					</dd>
+					<dt class="main-text main-text-small">FWA The Cutting Edge Award</dt>
+					<dd class="list-item">
+						<a class="list-link" href="#">thefwa.com</a>
+					</dd>
+				</dl>
+				-->
+			</div>
+		</section>
+		<footer class="footer main-text main-text-small">
+			<a class="footer-links link-twitter" href="https://twitter.com/slymnaslm">twitter</a>
+			<a class="footer-links link-instagram" href="https://www.instagram.com/slymnaslm/">instagram</a>
+			<div class="scrunch" aria-hidden="true"></div>
+		</footer>
+	</body>
+</html>
