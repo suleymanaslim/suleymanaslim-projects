@@ -29,7 +29,7 @@
 				<dl class="list">
 					<dt class="main-text main-text-small">Oy Sayma Sitesi</dt>
 					<dd class="list-item">
-						<a class="list-link" href="#">suleymanaslim.live/oysayma</a>
+						<a class="list-link" href="/oysayma.php">suleymanaslim.live/oysayma</a>
 					</dd>
 					<!--
 					<dt class="main-text main-text-small">Apple</dt>
