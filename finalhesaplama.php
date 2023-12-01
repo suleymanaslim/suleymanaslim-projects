@@ -56,6 +56,7 @@
                 </form>
 
                 <?php
+                header('Content-Type: text/html; charset=utf-8');
                 function calculateMinimumFinal($midtermScore, $lowerBound) {
                     $midtermWeight = $midtermScore * 0.3;
                     return max(0, ceil(($lowerBound - $midtermWeight) / 0.7));
