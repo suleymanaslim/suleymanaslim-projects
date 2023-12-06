@@ -7,6 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+#reloadHeader {
+            cursor: pointer;
+        }
         .ders { margin-bottom: 10px; }
         .sonuc { margin-top: 20px; }
         .input-group { margin-bottom: 10px; }
@@ -248,6 +251,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
+function validateScore(input) {
+    var value = input.value;
+    if (value.length > 3 || (value.length === 3 && value > 100)) {
+        input.value = value.slice(0, -1);
+    }
+}
+
+function updateResultsAndPopups(toplam1, toplam2, isTerm1Active, isTerm2Active) {
+    var sonuc1El = document.getElementById('sonuc1');
+    var sonuc2El = document.getElementById('sonuc2');
+    var diplomaNotuEl = document.getElementById('diplomaNotu');
+
+    sonuc1El.classList.toggle('hidden', !isTerm1Active || toplam1 === null);
+    sonuc2El.classList.toggle('hidden', !isTerm2Active || toplam2 === null);
+    diplomaNotuEl.classList.add('hidden');
+
+    if (isTerm1Active && toplam1 !== null) {
+        sonuc1El.textContent = '1. Dönem Ortalaması: ' + toplam1;
+    }
+    if (isTerm2Active && toplam2 !== null) {
+        sonuc2El.textContent = '2. Dönem Ortalaması: ' + toplam2;
+    }
+
+    if (isTerm1Active && isTerm2Active && toplam1 !== null && toplam2 !== null) {
+        var toplamOrtalama = (parseFloat(toplam1) + parseFloat(toplam2)) / 2;
+        diplomaNotuEl.textContent = 'Diploma Notunuz: ' + toplamOrtalama.toFixed(2);
+        diplomaNotuEl.classList.remove('hidden');
+        showPopup('Diploma Notunuz Hesaplandı: ' + toplamOrtalama.toFixed(2));
+    } else if (isTerm1Active && toplam1 !== null) {
+        showPopup('1. Dönem Ortalaması Hesaplandı: ' + toplam1);
+    } else if (isTerm2Active && toplam2 !== null) {
+        showPopup('2. Dönem Ortalaması Hesaplandı: ' + toplam2);
+    }
+}
+function toggleTerm(termNumber) {
+    var termDiv = document.getElementById('term' + termNumber);
+    var isChecked = document.getElementById('toggleTerm' + termNumber).checked;
+    termDiv.style.display = isChecked ? 'block' : 'none';
+    hesapla();
         document.getElementById('toggleTerm1').addEventListener('change', function() {
             var termDiv = document.getElementById('term1');
             termDiv.classList.toggle('hidden', !this.checked);
@@ -272,8 +314,10 @@
             yeniDers.innerHTML = `
                 <input type="text" placeholder="Ders Adı" class="form-control dersAdi bg-light text-dark" value="${dersBilgileri.ad || ''}">
                 <input type="number" placeholder="AKTS (Ders Kredisi)" class="form-control akts bg-light text-dark" min="1" onchange="hesapla()" value="${dersBilgileri.akts || ''}">
-                <input type="number" placeholder="Vize Notu" class="form-control vize bg-light text-dark" min="0" max="100" onchange="hesapla()" value="${dersBilgileri.vize || ''}">
-                <input type="number" placeholder="Final Notu" class="form-control final bg-light text-dark" min="0" max="100" onchange="hesapla()" value="${dersBilgileri.final || ''}">
+               <input type="number" placeholder="Vize Notu" class="form-control vize bg-light text-dark" min="0" max="100" onchange="hesapla()" oninput="validateScore(this)" value="${dersBilgileri.vize || ''}">
+<input type="number" placeholder="Final Notu" class="form-control final bg-light text-dark" min="0" max="100" onchange="hesapla()" oninput="validateScore(this)" value="${dersBilgileri.final || ''}">
+
+
                 <button class="btn btn-secondary disabled harfNotu bg-black">Harf Notu</button>
                 <button class="btn disabled puanKarsiligi" style="background-color: black; color: white; ">Harf Puan Karşılığı</button>
                 <button class="btn basariDurumu" style="background-color: black; color: white;" disabled>Durum</button>
@@ -291,42 +335,39 @@
             bilgileriKaydet();
         }
         function hesapla() {
-            var toplam1 = hesaplaDers('dersForm1');
-            var toplam2 = hesaplaDers('dersForm2');
-            var sonuc1El = document.getElementById('sonuc1');
-            var sonuc2El = document.getElementById('sonuc2');
-            var diplomaNotuEl = document.getElementById('diplomaNotu');
+    var toplam1 = document.getElementById('toggleTerm1').checked ? hesaplaDers('dersForm1') : null;
+    var toplam2 = document.getElementById('toggleTerm2').checked ? hesaplaDers('dersForm2') : null;
+    var sonuc1El = document.getElementById('sonuc1');
+    var sonuc2El = document.getElementById('sonuc2');
+    var diplomaNotuEl = document.getElementById('diplomaNotu');
 
-            sonuc1El.classList.add('hidden');
-            sonuc2El.classList.add('hidden');
-            diplomaNotuEl.classList.add('hidden');
+    sonuc1El.classList.add('hidden');
+    sonuc2El.classList.add('hidden');
+    diplomaNotuEl.classList.add('hidden');
 
-            if (document.getElementById('toggleTerm1').checked && toplam1 !== null) {
-                sonuc1El.textContent = '1. Dönem Ortalaması: ' + toplam1;
-                sonuc1El.classList.remove('hidden');
-                showPopup('1. Dönem Ortalaması Hesaplandı: ' + toplam1);
-                guncelleSartliGecis('dersForm1', toplam1);
-            } else {
-                sonuc1El.classList.add('hidden');
-            }
+    if (document.getElementById('toggleTerm1').checked && toplam1 !== null) {
+        sonuc1El.textContent = '1. Dönem Ortalaması: ' + toplam1;
+        sonuc1El.classList.remove('hidden');
+    }
 
-            if (document.getElementById('toggleTerm2').checked && toplam2 !== null) {
-                sonuc2El.textContent = '2. Dönem Ortalaması: ' + toplam2;
-                sonuc2El.classList.remove('hidden');
-                guncelleSartliGecis('dersForm2', toplam2);
-            } else {
-                sonuc2El.classList.add('hidden');
-            }
+    if (document.getElementById('toggleTerm2').checked && toplam2 !== null) {
+        sonuc2El.textContent = '2. Dönem Ortalaması: ' + toplam2;
+        sonuc2El.classList.remove('hidden');
+    }
 
-            if (toplam1 !== null && toplam2 !== null) {
-                var toplamOrtalama = (parseFloat(toplam1) + parseFloat(toplam2)) / 2;
-                diplomaNotuEl.textContent = 'Diploma Notunuz: ' + toplamOrtalama.toFixed(2);
-                diplomaNotuEl.classList.remove('hidden');
-            } else {
-                diplomaNotuEl.classList.add('hidden');
-            }
-            bilgileriKaydet();
-        }
+    if (document.getElementById('toggleTerm1').checked && toplam1 !== null && document.getElementById('toggleTerm2').checked && toplam2 !== null) {
+        var toplamOrtalama = (parseFloat(toplam1) + parseFloat(toplam2)) / 2;
+        diplomaNotuEl.textContent = 'Diploma Notunuz: ' + toplamOrtalama.toFixed(2);
+        diplomaNotuEl.classList.remove('hidden');
+        showPopup('Diploma Notunuz Hesaplandı: ' + toplamOrtalama.toFixed(2));
+    } else if (document.getElementById('toggleTerm1').checked && toplam1 !== null) {
+        showPopup('1. Dönem Ortalaması Hesaplandı: ' + toplam1);
+    } else if (document.getElementById('toggleTerm2').checked && toplam2 !== null) {
+        showPopup('2. Dönem Ortalaması Hesaplandı: ' + toplam2);
+    }
+}
+
+
         function temizle() {
             ['dersForm1', 'dersForm2'].forEach(formId => {
                 var dersForm = document.getElementById(formId);
@@ -345,40 +386,87 @@
             localStorage.removeItem('kaydedilenDersler');
         }
 
-        function hesaplaDers(formId) {
-            var dersForm = document.getElementById(formId);
-            var dersler = dersForm.getElementsByClassName('ders');
-            var toplamPuan = 0;
-            var toplamAKTS = 0;
+function hesaplaDers(formId) {
+    var dersForm = document.getElementById(formId);
+    var dersler = dersForm.getElementsByClassName('ders');
+    var toplamPuan = 0;
+    var toplamAKTS = 0;
 
-            for (var ders of dersler) {
-                var akts = ders.getElementsByClassName('akts')[0].value;
-                var vize = ders.getElementsByClassName('vize')[0].value;
-                var final = ders.getElementsByClassName('final')[0].value;
-                if (!akts || !vize || !final) continue;
+    for (var ders of dersler) {
+        var akts = ders.getElementsByClassName('akts')[0].value;
+        var vize = ders.getElementsByClassName('vize')[0].value;
+        var final = ders.getElementsByClassName('final')[0].value;
+        if (!akts || !vize || !final) continue;
 
-                var not = (vize * 0.3 + final * 0.7);
-                var katsayi = notuKatsayiyaCevir(not);
-                toplamPuan += katsayi * akts;
-                toplamAKTS += parseFloat(akts);
-                guncelleHarfNotuVeDurumu(ders, not);
-            }
+        var not = (vize * 0.3 + final * 0.7);
+        var katsayi = notuKatsayiyaCevir(not);
+        toplamPuan += katsayi * akts;
+        toplamAKTS += parseFloat(akts);
 
-            return toplamAKTS > 0 ? (toplamPuan / toplamAKTS).toFixed(2) : null;
+        guncelleDurumVeHarfNotu(ders, not, katsayi, toplamPuan / toplamAKTS);
+    }
+
+    return toplamAKTS > 0 ? (toplamPuan / toplamAKTS).toFixed(2) : null;
+}
+
+function guncelleDurumVeHarfNotu(ders, not, katsayi, ortalama) {
+    var durumButon = ders.getElementsByClassName('basariDurumu')[0];
+    var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
+    var puanKarsiligiButon = ders.getElementsByClassName('puanKarsiligi')[0];
+
+    var harfNotu = hesaplaHarfNotu(not, ortalama);
+    harfNotuButon.textContent = harfNotu;
+    puanKarsiligiButon.textContent = katsayi.toFixed(2);
+
+    if (not < 50) {
+        durumButon.textContent = "Başarısız";
+        durumButon.style.backgroundColor = 'red';
+        durumButon.style.color = 'white';
+    } else if (not >= 50 && not < 60) {
+        if (ortalama >= 2.5) {
+            durumButon.textContent = "Şartlı Geçiş";
+            durumButon.style.backgroundColor = 'yellow';
+            durumButon.style.color = 'black';
+            harfNotuButon.textContent = 'DB';
+        } else {
+            durumButon.textContent = "Başarısız";
+            durumButon.style.backgroundColor = 'red';
+            durumButon.style.color = 'white';
+            harfNotuButon.textContent = 'DD';
         }
+    } else {
+        durumButon.textContent = "Başarılı";
+        durumButon.style.backgroundColor = 'green';
+        durumButon.style.color = 'white';
+    }
+}
 
-        function notuKatsayiyaCevir(not) {
-            if (not >= 90) return 4.00;
-            else if (not >= 80) return 3.50; 
-            else if (not >= 70) return 3.00; 
-            else if (not >= 65) return 2.50; 
-            else if (not >= 60) return 2.00; 
-            else if (not >= 50) return 1.50;
-            else if (not >= 30) return 1.00; 
-            else return 0.00;
-        }
+function hesaplaHarfNotu(not, ortalama) {
+    if (not >= 90) return 'AA';
+    else if (not >= 80) return 'BA';
+    else if (not >= 70) return 'BB';
+    else if (not >= 65) return 'CB';
+    else if (not >= 60) return 'CC';
+    else if (not >= 50) {
+        return ortalama >= 2.5 ? 'DB' : 'DD';
+    }
+    else if (not >= 30) return 'FD';
+    else return 'FF';
+}
+function notuKatsayiyaCevir(not) {
+    if (not >= 90) return 4.00;
+    else if (not >= 80) return 3.50;
+    else if (not >= 70) return 3.00;
+    else if (not >= 65) return 2.50;
+    else if (not >= 60) return 2.00;
+    else if (not >= 50) return 1.50;
+    else if (not >= 30) return 1.00;
+    else return 0.00;
+}
 
-        function guncelleHarfNotuVeDurumu(ders, not) {
+
+
+       function guncelleHarfNotuVeDurumu(ders, not) {
             var harfNotu = hesaplaHarfNotu(not);
             var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
             var puanKarsiligiButon = ders.getElementsByClassName('puanKarsiligi')[0];
@@ -473,29 +561,36 @@
             bilgileriYenidenYukle();
         });
         function guncelleSartliGecis(formId, termOrtalama) {
-            var dersForm = document.getElementById(formId);
-            var dersler = dersForm.getElementsByClassName('ders');
+    var dersForm = document.getElementById(formId);
+    var dersler = dersForm.getElementsByClassName('ders');
 
-            for (var ders of dersler) {
-                var akts = ders.getElementsByClassName('akts')[0].value;
-                var vize = ders.getElementsByClassName('vize')[0].value;
-                var final = ders.getElementsByClassName('final')[0].value;
-                if (!akts || !vize || !final) continue;
+    for (var ders of dersler) {
+        var akts = ders.getElementsByClassName('akts')[0].value;
+        var vize = ders.getElementsByClassName('vize')[0].value;
+        var final = ders.getElementsByClassName('final')[0].value;
+        if (!akts || !vize || !final) continue;
 
-                var not = (vize * 0.3 + final * 0.7);
-                var katsayi = notuKatsayiyaCevir(not);
+        var not = (vize * 0.3 + final * 0.7);
+        var katsayi = notuKatsayiyaCevir(not);
 
-                if (termOrtalama >= 2.5 && katsayi == 1.5) {
-                    // Şartlı geçiş durumunu güncelle
-                    var durumButon = ders.getElementsByClassName('basariDurumu')[0];
-                    var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
-                    durumButon.textContent = "Şartlı Geçiş";
-                    durumButon.style.backgroundColor = 'yellow';
-                    durumButon.style.color = 'black';
-                    harfNotuButon.textContent = "DB";
-                }
-            }
+        if (termOrtalama < 2.5 && katsayi == 1.5) {
+            var durumButon = ders.getElementsByClassName('basariDurumu')[0];
+            var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
+            durumButon.textContent = "Başarısız";
+            durumButon.style.backgroundColor = 'red';
+            durumButon.style.color = 'white';
+            harfNotuButon.textContent = "DD"; 
+        } else if (termOrtalama >= 2.5 && katsayi == 1.5) {
+            var durumButon = ders.getElementsByClassName('basariDurumu')[0];
+            var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
+            durumButon.textContent = "Şartlı Geçiş";
+            durumButon.style.backgroundColor = 'yellow';
+            durumButon.style.color = 'black';
+            harfNotuButon.textContent = "DB";
         }
+    }
+}
+
         function showPopup(message) {
             var popup = document.createElement('div');
             popup.classList.add('popup');
@@ -516,8 +611,6 @@
 
 
     </script>
-
-    <!-- Bootstrap 5 JavaScript ve Popper.js eklemesi -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@2.10.2/dist/umd/popper.min.js"></script>
 </body>
