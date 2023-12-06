@@ -150,7 +150,18 @@
             transition: opacity 0.3s;
             z-index: 999;
         }
-
+        .fa-instagram {
+            color: black;
+            font-size: 24px; 
+        }
+        @media (max-width: 768px) {
+        .fa-instagram {
+        font-size: 20px; 
+            }
+        }
+        .d-flex {
+            gap: 10px;
+        }
     </style>
 </head>
 <body class="container mt-3">
@@ -168,14 +179,18 @@
         </div>
     </div>
     <div class="container text-center">
-    <h1> GNO&YNO Hesaplayıcı</h1>
-    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#gradeTableModal">
-        <h2 class="badge bg-primary text-wrap">? Yardım</h2>
-                <a href="https://www.instagram.com/slymnaslm" target="_blank">
-                    <i class="fa fa-instagram fa-2x" style="margin-right: 10px;"></i>
-                </a><a href="https://www.instagram.com/hsyndmrts4747" target="_blank">
-                    <i class="fa fa-instagram fa-2x"></i>
-    </button>
+        <h1> GNO&YNO Hesaplayıcı</h1>
+        <div class="d-flex justify-content-center align-items-center">
+            <a href="https://www.instagram.com/slymnaslm" target="_blank">
+                <i class="fa fa-instagram fa-2x me-2"></i>
+            </a>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#gradeTableModal">
+                <h2 class="badge bg-primary text-wrap">? Yardım</h2>
+            </button>
+            <a href="https://www.instagram.com/hsyndmrts4747" target="_blank">
+                <i class="fa fa-instagram fa-2x ms-2"></i>
+            </a>
+        </div>
     </div>
     <!-- Yardım Modal -->
     <div class="modal fade" id="gradeTableModal" tabindex="-1" role="dialog" aria-labelledby="gradeTableModalLabel" aria-hidden="true">
