@@ -6,7 +6,152 @@
     <title>Çift Dönem Ortalaması Hesaplama</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>.btn-primary,.form-check-input,.form-check-label,.modal-header,body{color:#000}.modal-header,.modal-title{font-weight:700}.ders,.input-group{margin-bottom:10px}#buttons{position:absolute;right:20px}.hidden{display:none}body{background-color:#fff}.btn-primary{background-color:#ff0}.form-control{background-color:transparent;border:1px solid #000;color:#000}#welcomeModal{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);display:none;justify-content:center;align-items:center;z-index:1000}.modal-content{background-color:#fff;padding:20px;border-radius:5px;text-align:center;width:100%;height:100%;display:flex;justify-content:center;align-items:center}.modal-header{background-color:#fff}.modal-body,.modal-footer{background-color:#f8f9fa}.modal-body h2{color:#007bff;margin-bottom:15px}.btn-secondary{background-color:#6c757d}.sonuc{margin-top:20px;margin-bottom:30px;padding:10px;background-color:#f0f0f0;border:1px solid #ccc;border-radius:5px;text-align:center;font-size:18px;color:#333;box-shadow:0 2px 4px rgba(0,0,0,.1)}@media (max-width:768px){#buttons{position:static;margin-top:20px}.input-group{flex-direction:column;align-items:stretch}.input-group button,.input-group input{margin-top:5px}.input-group .form-control{width:100%}.sonuc{font-size:16px;padding:8px}.btn-danger,.btn-warning{border:2px solid #000;color:#fff}.btn-warning{background-color:#ffc107}.btn-danger{background-color:#dc3545}.btn-danger:hover,.btn-warning:hover{background-color:#000;color:#ffc107}.btn-danger:hover{color:#dc3545}}.fade-in{animation:.5s fadeIn}@keyframes fadeIn{from{opacity:0}to{opacity:1}}.popup{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background-color:#333;color:#fff;padding:10px 20px;border-radius:5px;opacity:0;transition:opacity .3s;z-index:999}</style>
+    <style>
+        .ders { margin-bottom: 10px; }
+        .sonuc { margin-top: 20px; }
+        .input-group { margin-bottom: 10px; }
+        #buttons { position: absolute; right: 20px; }
+        .hidden { display: none; }
+        body {
+            background-color: #fff;
+            color: #000;
+        }
+        .btn-primary {
+            background-color: yellow;
+            color: #000;
+        }
+        .form-control {
+            background-color: transparent;
+            border: 1px solid #000;
+            color: #000;
+        }
+        .form-check-label, .form-check-input {
+            color: #000;
+        }
+        @media (max-width: 768px) {
+            #buttons {
+                position: static;
+                margin-top: 20px;
+            }
+            .input-group {
+                flex-direction: column;
+                align-items: stretch; /* Giriş alanlarını genişletmek için */
+            }
+            .input-group input, .input-group button {
+                margin-top: 5px; /* Giriş alanları ve butonlar arasındaki boşluğu ayarlamak için */
+            }
+            .input-group .form-control {
+                width: 100%; /* Giriş alanlarının genişliğini tam ekran yapmak için */
+            }
+        }
+        #welcomeModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Diğer tüm elementlerin üzerinde olacak */
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%; /* Ekranın tamamını kaplayacak şekilde genişletildi */
+            height: 100%; /* Ekranın tamamını kaplayacak şekilde genişletildi */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-header {
+            background-color: white;
+            color: black;
+            font-weight: bold;
+        }
+        .modal-title {
+            font-weight: bold;
+        }
+        .modal-body {
+            background-color: #f8f9fa;
+        }
+        .modal-body h2 {
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+        .modal-footer {
+            background-color: #f8f9fa;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+        .sonuc {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        padding: 10px;
+        background-color: #f0f0f0; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        text-align: center; 
+        font-size: 18px; 
+        color: #333; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+        }
+        @media (max-width: 768px) {
+            .sonuc {
+                font-size: 16px; 
+                padding: 8px;
+            }
+        }
+        @media (max-width: 768px) {
+        .btn-warning, .btn-danger {
+            border: 2px solid #000;
+            color: #fff;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-warning:hover, .btn-danger:hover {
+            background-color: #000;
+            color: #ffc107;
+        }
+
+        .btn-danger:hover {
+            color: #dc3545;
+        }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .popup {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 999;
+        }
+
+    </style>
 </head>
 <body class="container mt-3">
     <div id="welcomeModal">
@@ -28,7 +173,6 @@
         <h2 class="badge bg-primary text-wrap">? Yardım</h2>
     </button>
     </div>
-    <div id="popup" class="popup" style="display: none;"></div>
     <!-- Yardım Modal -->
     <div class="modal fade" id="gradeTableModal" tabindex="-1" role="dialog" aria-labelledby="gradeTableModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -81,20 +225,278 @@
         <button onclick="temizle()" class="btn btn-dark">Temizle</button>
     </div>
     <div id="diplomaNotu" class="sonuc hidden"></div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script>
-    function ekleDers(e,t={}){var l=document.getElementById(e),r=document.createElement("div");r.className="ders input-group",r.innerHTML=`
-                <input type="text" placeholder="Ders Adı" class="form-control dersAdi bg-light text-dark" value="${t.ad||""}">
-                <input type="number" placeholder="AKTS (Ders Kredisi)" class="form-control akts bg-light text-dark" min="1" onchange="hesapla()" value="${t.akts||""}">
-                <input type="number" placeholder="Vize Notu" class="form-control vize bg-light text-dark" min="0" max="100" onchange="hesapla()" value="${t.vize||""}">
-                <input type="number" placeholder="Final Notu" class="form-control final bg-light text-dark" min="0" max="100" onchange="hesapla()" value="${t.final||""}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('toggleTerm1').addEventListener('change', function() {
+            var termDiv = document.getElementById('term1');
+            termDiv.classList.toggle('hidden', !this.checked);
+            updateButtonsPosition();
+            if (this.checked && termDiv.getElementsByClassName('ders').length === 0) {
+                ekleDers('dersForm1');
+            }
+        });
+
+        document.getElementById('toggleTerm2').addEventListener('change', function() {
+            var termDiv = document.getElementById('term2');
+            termDiv.classList.toggle('hidden', !this.checked);
+            updateButtonsPosition();
+            if (this.checked && termDiv.getElementsByClassName('ders').length === 0) {
+                ekleDers('dersForm2');
+            }
+        });
+        function ekleDers(formId, dersBilgileri = {}) {
+            var dersForm = document.getElementById(formId);
+            var yeniDers = document.createElement('div');
+            yeniDers.className = 'ders input-group';
+            yeniDers.innerHTML = `
+                <input type="text" placeholder="Ders Adı" class="form-control dersAdi bg-light text-dark" value="${dersBilgileri.ad || ''}">
+                <input type="number" placeholder="AKTS (Ders Kredisi)" class="form-control akts bg-light text-dark" min="1" onchange="hesapla()" value="${dersBilgileri.akts || ''}">
+                <input type="number" placeholder="Vize Notu" class="form-control vize bg-light text-dark" min="0" max="100" onchange="hesapla()" value="${dersBilgileri.vize || ''}">
+                <input type="number" placeholder="Final Notu" class="form-control final bg-light text-dark" min="0" max="100" onchange="hesapla()" value="${dersBilgileri.final || ''}">
                 <button class="btn btn-secondary disabled harfNotu bg-black">Harf Notu</button>
                 <button class="btn disabled puanKarsiligi" style="background-color: black; color: white; ">Harf Puan Karşılığı</button>
                 <button class="btn basariDurumu" style="background-color: black; color: white;" disabled>Durum</button>
-            `,l.appendChild(r),l.addEventListener("change",bilgileriKaydet)}function cikarDers(e){var t=document.getElementById(e),l=t.getElementsByClassName("ders");l.length>1&&t.removeChild(l[l.length-1]),hesapla(),bilgileriKaydet()}function hesapla(){var e=hesaplaDers("dersForm1"),t=hesaplaDers("dersForm2"),l=document.getElementById("sonuc1"),r=document.getElementById("sonuc2"),a=document.getElementById("diplomaNotu");l.classList.add("hidden"),r.classList.add("hidden"),a.classList.add("hidden");var n=null!==e&&null!==t;if(document.getElementById("toggleTerm1").checked&&null!==e&&(l.textContent="1. D\xf6nem Ortalaması: "+e,l.classList.remove("hidden"),guncelleSartliGecis("dersForm1",e),n||showPopup("1. D\xf6nem Ortalaması: "+e,4e3)),document.getElementById("toggleTerm2").checked&&null!==t&&(r.textContent="2. D\xf6nem Ortalaması: "+t,r.classList.remove("hidden"),guncelleSartliGecis("dersForm2",t),n||showPopup("2. D\xf6nem Ortalaması: "+t,4e3)),n){var s=(parseFloat(e)+parseFloat(t))/2;a.textContent="Diploma Notunuz: "+s.toFixed(2),a.classList.remove("hidden"),showPopup("Diploma Notunuz: "+s.toFixed(2),4e3)}bilgileriKaydet()}function temizle(){["dersForm1","dersForm2"].forEach(e=>{document.getElementById(e).innerHTML="",ekleDers(e)});var e=document.getElementById("sonuc1"),t=document.getElementById("sonuc2"),l=document.getElementById("diplomaNotu");e.classList.add("hidden"),t.classList.add("hidden"),l.classList.add("hidden"),document.getElementById("diplomaNotu").textContent="",document.getElementById("sonuc1").textContent="",document.getElementById("sonuc2").textContent="",localStorage.removeItem("kaydedilenDersler")}function hesaplaDers(e){var t=document.getElementById(e).getElementsByClassName("ders"),l=0,r=0;for(var a of t){var n=a.getElementsByClassName("akts")[0].value,s=a.getElementsByClassName("vize")[0].value,o=a.getElementsByClassName("final")[0].value;if(n&&s&&o){var i=.3*s+.7*o;l+=notuKatsayiyaCevir(i)*n,r+=parseFloat(n),guncelleHarfNotuVeDurumu(a,i)}}var d=r>0?(l/r).toFixed(2):null;return guncelleSartliGecis(e,d),d}function notuKatsayiyaCevir(e){if(e>=90)return 4;if(e>=80)return 3.5;if(e>=70)return 3;if(e>=65)return 2.5;if(e>=60)return 2;else if(e>=50)return 1.5;else if(e>=30)return 1;else return 0}function guncelleHarfNotuVeDurumu(e,t){var l=hesaplaHarfNotu(t),r=e.getElementsByClassName("harfNotu")[0],a=e.getElementsByClassName("puanKarsiligi")[0],n=e.getElementsByClassName("basariDurumu")[0];r.textContent=l,a.textContent=notuKatsayiyaCevir(t).toFixed(2),"FF"===l||"FD"===l||"DD"===l?(n.style.backgroundColor="red",n.style.color="white"):"DB"===l?(n.style.backgroundColor="yellow",n.style.color="black"):(n.style.backgroundColor="green",n.style.color="white")}function hesaplaHarfNotu(e){if(e>=90)return"AA";if(e>=80)return"BA";if(e>=70)return"BB";if(e>=65)return"CB";if(e>=60)return"CC";else if(e>=50)return"DD";else if(e>=30)return"FD";else return"FF"}function bilgileriKaydet(){let e=document.querySelectorAll("#dersForm1 .ders"),t=document.querySelectorAll("#dersForm2 .ders"),l=[];e.forEach((e,t)=>{l.push({term:1,ad:e.querySelector(".dersAdi").value,akts:e.querySelector(".akts").value,vize:e.querySelector(".vize").value,final:e.querySelector(".final").value})}),t.forEach((e,t)=>{l.push({term:2,ad:e.querySelector(".dersAdi").value,akts:e.querySelector(".akts").value,vize:e.querySelector(".vize").value,final:e.querySelector(".final").value})}),localStorage.setItem("kaydedilenDersler",JSON.stringify(l))}function bilgileriYenidenYukle(){let e=JSON.parse(localStorage.getItem("kaydedilenDersler"));document.getElementById("dersForm1").innerHTML="",document.getElementById("dersForm2").innerHTML="",e&&0!==e.length?e.forEach(e=>{1===e.term?ekleDers("dersForm1",e):2===e.term&&ekleDers("dersForm2",e)}):(ekleDers("dersForm1"),ekleDers("dersForm2")),hesapla()}function guncelleSartliGecis(e,t){var l=document.getElementById(e).getElementsByClassName("ders");for(var r of l){var a=r.getElementsByClassName("akts")[0].value,n=r.getElementsByClassName("vize")[0].value,s=r.getElementsByClassName("final")[0].value;if(a&&n&&s){var o=notuKatsayiyaCevir(.3*n+.7*s);if(t>=2.5&&1.5==o){var i=r.getElementsByClassName("basariDurumu")[0],d=r.getElementsByClassName("harfNotu")[0];i.textContent="Şartlı Ge\xe7iş",i.style.backgroundColor="yellow",i.style.color="black",d.textContent="DB"}}}}function showPopup(e,t){var l=document.getElementById("popup");l.textContent=e,l.style.display="block",l.style.opacity=1,setTimeout(function(){l.style.opacity=0,setTimeout(function(){l.style.display="none"},300)},t)}function dersTamamlandiMi(e){return e.querySelector(".dersAdi").value&&e.querySelector(".akts").value&&e.querySelector(".vize").value&&e.querySelector(".final").value}document.getElementById("toggleTerm1").addEventListener("change",function(){var e=document.getElementById("term1");e.classList.toggle("hidden",!this.checked),updateButtonsPosition(),this.checked&&0===e.getElementsByClassName("ders").length&&ekleDers("dersForm1")}),document.getElementById("toggleTerm2").addEventListener("change",function(){var e=document.getElementById("term2");e.classList.toggle("hidden",!this.checked),updateButtonsPosition(),this.checked&&0===e.getElementsByClassName("ders").length&&ekleDers("dersForm2")}),document.querySelectorAll(".form-control").forEach(function(e){e.addEventListener("change",function(){var e=this.closest(".ders");e.querySelector(".dersAdi").value&&e.querySelector(".akts").value&&e.querySelector(".vize").value&&e.querySelector(".final").value&&hesapla()})}),document.addEventListener("DOMContentLoaded",function(){ekleDers("dersForm1"),ekleDers("dersForm2");var e=document.getElementById("welcomeModal");e.style.display="flex",setTimeout(function(){e.style.display="none"},2e3)}),document.addEventListener("DOMContentLoaded",function(){bilgileriYenidenYukle()}),document.querySelectorAll(".form-control").forEach(function(e){e.addEventListener("change",function(){dersTamamlandiMi(this.closest(".ders"))&&hesapla()})});
-  </script>
+            `;
+            dersForm.appendChild(yeniDers);
+            dersForm.addEventListener('change', bilgileriKaydet);
+        }
+        function cikarDers(formId) {
+            var dersForm = document.getElementById(formId);
+            var dersler = dersForm.getElementsByClassName('ders');
+            if (dersler.length > 1) {
+                dersForm.removeChild(dersler[dersler.length - 1]);
+            }
+            hesapla();
+            bilgileriKaydet();
+        }
+        function hesapla() {
+            var toplam1 = hesaplaDers('dersForm1');
+            var toplam2 = hesaplaDers('dersForm2');
+            var sonuc1El = document.getElementById('sonuc1');
+            var sonuc2El = document.getElementById('sonuc2');
+            var diplomaNotuEl = document.getElementById('diplomaNotu');
+
+            sonuc1El.classList.add('hidden');
+            sonuc2El.classList.add('hidden');
+            diplomaNotuEl.classList.add('hidden');
+
+            if (document.getElementById('toggleTerm1').checked && toplam1 !== null) {
+                sonuc1El.textContent = '1. Dönem Ortalaması: ' + toplam1;
+                sonuc1El.classList.remove('hidden');
+                showPopup('1. Dönem Ortalaması Hesaplandı: ' + toplam1);
+                guncelleSartliGecis('dersForm1', toplam1);
+            } else {
+                sonuc1El.classList.add('hidden');
+            }
+
+            if (document.getElementById('toggleTerm2').checked && toplam2 !== null) {
+                sonuc2El.textContent = '2. Dönem Ortalaması: ' + toplam2;
+                sonuc2El.classList.remove('hidden');
+                guncelleSartliGecis('dersForm2', toplam2);
+            } else {
+                sonuc2El.classList.add('hidden');
+            }
+
+            if (toplam1 !== null && toplam2 !== null) {
+                var toplamOrtalama = (parseFloat(toplam1) + parseFloat(toplam2)) / 2;
+                diplomaNotuEl.textContent = 'Diploma Notunuz: ' + toplamOrtalama.toFixed(2);
+                diplomaNotuEl.classList.remove('hidden');
+            } else {
+                diplomaNotuEl.classList.add('hidden');
+            }
+            bilgileriKaydet();
+        }
+        function temizle() {
+            ['dersForm1', 'dersForm2'].forEach(formId => {
+                var dersForm = document.getElementById(formId);
+                dersForm.innerHTML = '';
+                ekleDers(formId);
+            });
+            var sonuc1El = document.getElementById('sonuc1');
+            var sonuc2El = document.getElementById('sonuc2');
+            var diplomaNotuEl = document.getElementById('diplomaNotu');
+            sonuc1El.classList.add('hidden');
+            sonuc2El.classList.add('hidden');
+            diplomaNotuEl.classList.add('hidden');
+            document.getElementById('diplomaNotu').textContent = '';
+            document.getElementById('sonuc1').textContent = '';
+            document.getElementById('sonuc2').textContent = '';
+            localStorage.removeItem('kaydedilenDersler');
+        }
+
+        function hesaplaDers(formId) {
+            var dersForm = document.getElementById(formId);
+            var dersler = dersForm.getElementsByClassName('ders');
+            var toplamPuan = 0;
+            var toplamAKTS = 0;
+
+            for (var ders of dersler) {
+                var akts = ders.getElementsByClassName('akts')[0].value;
+                var vize = ders.getElementsByClassName('vize')[0].value;
+                var final = ders.getElementsByClassName('final')[0].value;
+                if (!akts || !vize || !final) continue;
+
+                var not = (vize * 0.3 + final * 0.7);
+                var katsayi = notuKatsayiyaCevir(not);
+                toplamPuan += katsayi * akts;
+                toplamAKTS += parseFloat(akts);
+                guncelleHarfNotuVeDurumu(ders, not);
+            }
+
+            return toplamAKTS > 0 ? (toplamPuan / toplamAKTS).toFixed(2) : null;
+        }
+
+        function notuKatsayiyaCevir(not) {
+            if (not >= 90) return 4.00;
+            else if (not >= 80) return 3.50; 
+            else if (not >= 70) return 3.00; 
+            else if (not >= 65) return 2.50; 
+            else if (not >= 60) return 2.00; 
+            else if (not >= 50) return 1.50;
+            else if (not >= 30) return 1.00; 
+            else return 0.00;
+        }
+
+        function guncelleHarfNotuVeDurumu(ders, not) {
+            var harfNotu = hesaplaHarfNotu(not);
+            var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
+            var puanKarsiligiButon = ders.getElementsByClassName('puanKarsiligi')[0];
+            var durumButon = ders.getElementsByClassName('basariDurumu')[0];
+
+            harfNotuButon.textContent = harfNotu;
+            puanKarsiligiButon.textContent = notuKatsayiyaCevir(not).toFixed(2);
+
+            if (harfNotu === 'FF' || harfNotu === 'FD') {
+                durumButon.style.backgroundColor = 'red';
+                durumButon.style.color = 'white';
+            } else if (harfNotu === 'DB' || harfNotu === 'DD') {
+                durumButon.style.backgroundColor = 'yellow';
+                durumButon.style.color = 'black';
+            } else if (harfNotu === 'CC' || harfNotu === 'CB') {
+                durumButon.style.backgroundColor = 'green';
+                durumButon.style.color = 'white'; 
+            } else {
+                durumButon.style.backgroundColor = 'green';
+                durumButon.style.color = 'white';
+            }
+        }
+
+        function hesaplaHarfNotu(not) {
+            if (not >= 90) return 'AA';
+            else if (not >= 80) return 'BA';
+            else if (not >= 70) return 'BB';
+            else if (not >= 65) return 'CB';
+            else if (not >= 60) return 'CC';
+            else if (not >= 50) return 'DB';
+            else if (not >= 30) return 'FD';
+            else return 'FF';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            ekleDers('dersForm1');
+            ekleDers('dersForm2');
+            var welcomeModal = document.getElementById('welcomeModal');
+            welcomeModal.style.display = 'flex';
+            setTimeout(function() {
+                welcomeModal.style.display = 'none';
+            }, 2000);
+        });
+        function bilgileriKaydet() {
+        let dersler1 = document.querySelectorAll('#dersForm1 .ders');
+        let dersler2 = document.querySelectorAll('#dersForm2 .ders');
+        let kaydedilecekDersler = [];
+
+        dersler1.forEach((ders, index) => {
+            kaydedilecekDersler.push({
+                term: 1,
+                ad: ders.querySelector('.dersAdi').value,
+                akts: ders.querySelector('.akts').value,
+                vize: ders.querySelector('.vize').value,
+                final: ders.querySelector('.final').value
+            });
+        });
+
+        dersler2.forEach((ders, index) => {
+            kaydedilecekDersler.push({
+                term: 2,
+                ad: ders.querySelector('.dersAdi').value,
+                akts: ders.querySelector('.akts').value,
+                vize: ders.querySelector('.vize').value,
+                final: ders.querySelector('.final').value
+            });
+        });
+
+        localStorage.setItem('kaydedilenDersler', JSON.stringify(kaydedilecekDersler));
+        }
+        function bilgileriYenidenYukle() {
+            let kaydedilenDersler = JSON.parse(localStorage.getItem('kaydedilenDersler'));
+
+            document.getElementById('dersForm1').innerHTML = '';
+            document.getElementById('dersForm2').innerHTML = '';
+
+            if (!kaydedilenDersler || kaydedilenDersler.length === 0) {
+                ekleDers('dersForm1');
+                ekleDers('dersForm2');
+            } else {
+                kaydedilenDersler.forEach(ders => {
+                    if (ders.term === 1) {
+                        ekleDers('dersForm1', ders);
+                    } else if (ders.term === 2) {
+                        ekleDers('dersForm2', ders);
+                    }
+                });
+            }
+            hesapla();
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            bilgileriYenidenYukle();
+        });
+        function guncelleSartliGecis(formId, termOrtalama) {
+            var dersForm = document.getElementById(formId);
+            var dersler = dersForm.getElementsByClassName('ders');
+
+            for (var ders of dersler) {
+                var akts = ders.getElementsByClassName('akts')[0].value;
+                var vize = ders.getElementsByClassName('vize')[0].value;
+                var final = ders.getElementsByClassName('final')[0].value;
+                if (!akts || !vize || !final) continue;
+
+                var not = (vize * 0.3 + final * 0.7);
+                var katsayi = notuKatsayiyaCevir(not);
+
+                if (termOrtalama >= 2.5 && katsayi == 1.5) {
+                    // Şartlı geçiş durumunu güncelle
+                    var durumButon = ders.getElementsByClassName('basariDurumu')[0];
+                    var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
+                    durumButon.textContent = "Şartlı Geçiş";
+                    durumButon.style.backgroundColor = 'yellow';
+                    durumButon.style.color = 'black';
+                    harfNotuButon.textContent = "DB";
+                }
+            }
+        }
+        function showPopup(message) {
+            var popup = document.createElement('div');
+            popup.classList.add('popup');
+            popup.textContent = message;
+            document.body.appendChild(popup);
+
+            setTimeout(function () {
+                popup.style.opacity = '1';
+            }, 10);
+
+            setTimeout(function () {
+                popup.style.opacity = '0';
+                setTimeout(function () {
+                    document.body.removeChild(popup);
+                }, 1000);
+            }, 3000);
+        }
+
+
+    </script>
 
     <!-- Bootstrap 5 JavaScript ve Popper.js eklemesi -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
