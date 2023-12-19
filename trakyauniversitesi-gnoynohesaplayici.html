@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAKYA ÜNİVERSİTESİ GNO&YNO HESAPLAYICI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+#warningModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+#warningModal.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+#warningModal .modal-content {
+     color: white;
+    text-align: center;
+    font-size: large;
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.input-group {
+    display: flex;
+    flex-wrap: nowrap; 
+}
+
+.input-group > * {
+    flex: 1 1 0; 
+}
+
+.input-group .btn {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+@media (max-width: 768px) {
+    .input-group {
+        display: flex;
+        flex-wrap: nowrap; 
+    }
+    .input-group > * {
+        flex: 1 1 0; 
+    }
+    .input-group .btn {
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+    }
+    .delete-btn {
+        font-size: 0; 
+    }
+    .delete-btn::after {
+        content: 'Sil';
+        font-size: 16px; 
+    }
+}
+
+
+.fixed-size-button {
+    width: 100px; 
+    height: 40px; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+@media (max-width: 768px) {
+    .mobile-delete-btn-group {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+    }
+    .mobile-delete-btn-group .btn {
+        flex-grow: 1;
+    }
+
+    .mobile-delete-btn {
+        order: 4; 
+    }
+}
+
+#welcomeModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+@media (min-width: 768px) {
+#welcomeModal {
+    z-index: 9999;
+  }
+} 
+    @media (min-width: 768px) {
+        #floating-buttons {
+            position: fixed;
+            right: 10px; 
+            bottom: 10px; 
+            flex-direction: row; 
+            display: flex;
+		z-index:9998;
+#welcomeModal {
+    z-index: 9999;
+}
+
+        }
+    }
+
+  @media (max-width: 767px) {
+    #floating-buttons {
+        position: fixed;
+        bottom: 20px;
+        right: 10px;
+        z-index: 9998;
+        display: block;
+    }
+
+    .diploma-notu-visible #floating-buttons {
+        position: relative;
+        bottom: initial;
+        right: initial;
+        margin-bottom: 20px; 
+    }
+}
+
+    #baslik {
+        cursor: pointer;
+    }
+    .input-group input[type="text"], 
+    .input-group input[type="number"] {
+        text-align: center; 
+    }
+
+    @media (min-width: 769px) {
+        .delete-btn {
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .mobile-delete-btn-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .mobile-delete-btn {
+            display: block;
+            width: auto; 
+            margin-left: 10px;
+        }
+    }
+
+    .hidden { 
+        display: none; 
+    }
+
+    body {
+        background-color: #fff;
+        color: #000;
+    }
+
+    .btn-primary {
+        background-color: yellow;
+        color: #000;
+    }
+
+    .form-control {
+        background-color: transparent;
+        border: 1px solid #000;
+        color: #000;
+    }
+
+    .form-check-label, 
+    .form-check-input {
+        color: #000;
+    }
+
+    #welcomeModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-header {
+        background-color: white;
+        color: black;
+        font-weight: bold;
+    }
+
+    .modal-title {
+        font-weight: bold;
+    }
+
+    .modal-body {
+        background-color: #f8f9fa;
+    }
+
+    .modal-body h2 {
+        color: #007bff;
+        margin-bottom: 15px;
+    }
+
+    .modal-footer {
+        background-color: #f8f9fa;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+    }
+
+    .sonuc {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        padding: 10px;
+        background-color: #f0f0f0; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        text-align: center; 
+        font-size: 18px; 
+        color: #333; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .sonuc {
+            font-size: 16px; 
+            padding: 8px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .btn-warning, .btn-danger {
+            border: 2px solid #000;
+            color: #fff;
+        }
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-warning:hover, .btn-danger:hover {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            color: #dc3545;
+        }
+    }
+
+    .fade-in {
+        animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .popup {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 10000.
+    }
+
+    .fa-instagram {
+        color: black;
+        font-size: 34px;
+    }
+
+    @media (max-width: 768px) {
+        .fa-instagram {
+            font-size: 34px;
+        }
+    }
+
+    .d-flex {
+        gap: 10px;
+    }
+    @media (max-width: 375px) {
+        .basariDurumu {
+            font-size: inherit;
+            color: inherit;
+        }
+        .basariDurumu.hesaplandi {
+            font-size: 0;
+            color: black !important;
+        }
+        .basariDurumu.hesaplandi::after {
+            font-size: 16px; 
+            content: attr(data-symbol);
+        }
+    }
+    @media (max-width: 425px) {
+    #floating-buttons {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    #floating-buttons .btn {
+        flex-basis: 48%; 
+    }
+    }
+    @media (min-width: 768px) {
+    #floating-buttons .btn-success{
+        display: none !important;
+    }
+}
+@media (max-width: 767px) {
+    .btn-wrapper {
+        background-color: #f5f5f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .keyboard-is-open {
+        position: sticky;
+        bottom: 5px;
+    }
+}
+.fa-instagram {
+    text-decoration: none !important; 
+    border: none !important;
+}
+a[href*="instagram.com"] {
+    text-decoration: none;
+    border: none; 
+}
+</style>
+
+</head>
+
+<body class="container mt-3">
+    <div id="welcomeModal">
+        <div class="modal-content">
+            <div>
+            <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 40px; height: 40%;">
+                <div style="width: 40%;">
+                    <img src="https://upload.wikimedia.org/wikipedia/tr/1/14/Trakya_%C3%9Cniversitesi_logosu.jpg" alt="Trakya Üniversitesi Logosu" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+                <p style>Genel/Yarıyıl Not Ortalaması Hesaplayıcı</p>
+                <p>Created by Süleyman A. & Hüseyin D.</p>
+                <a href="https://www.instagram.com/slymnaslm" target="_blank">
+                    <i class="fa fa-instagram fa-2x" style="margin-right: 20px;"></i>
+                </a>
+                <a href="https://www.instagram.com/hsyndmrts4747" target="_blank">
+                    <i class="fa fa-instagram fa-2x"></i>
+                </a> 
+            </div>
+        </div>
+    </div>
+    <div class="container text-center">
+<h1 id="baslik" style="cursor: pointer;">TRAKYA ÜNİVERSİTESİ GNO&YNO HESAPLAYICI</h1>
+        <div class="d-flex justify-content-center align-items-center">
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#gradeTableModal">
+                <h2 class="badge bg-primary text-wrap">? Yardım</h2>
+            </button>
+        </div>
+    </div>
+    <!-- Yardım Modal -->
+    <div class="modal fade" id="gradeTableModal" tabindex="-1" role="dialog" aria-labelledby="gradeTableModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title .fs-2 text" id="gradeTableModalLabel">Yardım</h5>
+                </div>
+                <div class="modal-body">
+                    <h2>Vize Notları İle Ortalama Hesaplama</h2>
+                    <p class="text-center">Eğer sadece vize notlarınız açıklandıysa, final notunuza vize notlarınızı girerek geçici bir ortalama hesaplayabilirsiniz.</p>
+                    <h2>Şartlı Geçiş (DB) Nedir?</h2>
+                    <p class="text-center">Eğer dönem ortalamanız 2.5 veya daha yüksekse ve bir dersin not ortalaması 50-59 arasındaysa, 'Şartlı Geçiş' (DB) ile geçmiş sayılırsınız.</p>
+                    <h2>"DD" Harf Notu Nedir ?</h2>
+                    <p class="text-center">Dönem ortalamanız 2.5'un altındaysa ve bir dersin not ortalaması 50-59 arasında bile olsa, bu durumda o dersten başarısız sayılırsınız ve DD olarak kaydedilir.</p>
+                    <h2>Girdiğim değerler silinmedi ne yapmam gerekiyor?</h2>
+                    <p class="text-center">Sayfanın alt kısmında yer alan 'Temizle' butonuna basılmadığı sürece, bilgileriniz yerel depolama alanınızda saklanmaktadır. Bilgileri silmek için, yalnızca 'Temizle' butonuna basmanız gerekmektedir.</p>
+                    <h2>Butonların Anlamları</h2>
+                    <div class="d-flex flex-column align-items-center mb-3">
+                        <div class="text-center mb-2">
+                            <button class="btn btn-success" disabled>✅</button><br> Başarılı durumu gösterir.
+                        </div>
+                        <div class="text-center mb-2">
+                            <button class="btn btn-warning" disabled>❓</button><br> Şartlı geçişi gösterir.
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-danger" disabled>⛔</button><br> Başarısız durumu gösterir.
+                        </div>
+                    </div>                    
+                    <h2>Ek Bilgiler</h2>
+                    <p class="text-center">Ders Kredisinin girildiğinden emin olunuz; aksi takdirde hesaplama yapılamaz. Vize ve final notları için 0-100 arasında değerler giriniz. Yardım butonunun sağında ve solunda bulunan Instagram ikonlarına tıklayarak bize ulaşabilirsiniz.</p>
+                    <h2>Bize ulaşın</h2>
+                    <p>
+                        <a href="https://www.instagram.com/slymnaslm" target="_blank">
+                            <i class="fa fa-instagram fa-2x me-2"></i>
+                        </a>
+                        <a href="https://www.instagram.com/hsyndmrts4747" target="_blank">
+                            <i class="fa fa-instagram fa-2x ms-2"></i>
+                        </a>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="sonuc1" class="sonuc hidden"></div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="toggleTerm1" checked onchange="toggleTerm('1')">
+        <label class="form-check-label" for="toggleTerm1">1. Dönem</label>
+    </div>
+    <div id="term1">
+        <div id="dersForm1"></div>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+            <button onclick="ekleDers('dersForm1')" class="btn btn-warning mb-2 mb-md-0">Ders Ekle</button>
+            </div>
+    </div>
+    <div id="sonuc2" class="sonuc hidden"></div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="toggleTerm2" checked onchange="toggleTerm('2')">
+        <label class="form-check-label" for="toggleTerm2">2. Dönem</label>
+    </div>
+    <div id="term2">
+        <div id="dersForm2"></div>
+        <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+            <button onclick="ekleDers('dersForm2')" class="btn btn-warning mb-2 mb-md-0">Ders Ekle</button>
+           </div>
+    </div>
+    <div id="diplomaNotu" class="sonuc hidden"></div>
+<div id="floating-buttons" class="d-flex justify-content-around btn-wrapper">
+    <button onclick="hesapla()" class="btn btn-success">Hesapla</button>
+    <button onclick="temizle()" class="btn btn-dark">Temizle</button>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+function toggleWarningModal(message) {
+    var modal = document.getElementById('warningModal');
+    var textElement = document.getElementById('warningText');
+    textElement.innerHTML = ""; 
+
+    modal.classList.add('visible');
+    modal.classList.remove('hidden');
+
+    var i = 0;
+    var speed = 50; 
+    function typeWriter() {
+        if (i < message.length) {
+            textElement.innerHTML += message.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            setTimeout(function() {
+                modal.classList.add('hidden');
+                modal.classList.remove('visible');
+            }, 5000);
+        }
+    }
+    typeWriter();
+}
+var lastClosedTerm = null;
+
+function checkBothTermsClosed() {
+    var term1Checked = document.getElementById('toggleTerm1').checked;
+    var term2Checked = document.getElementById('toggleTerm2').checked;
+
+    if (!term1Checked && !term2Checked) {
+        toggleWarningModal("Yavaş orada, kahraman! Not hesaplama dünyasını terk etmeden önce tüm notlarınızı hesaplamış olduğunuzdan emin misiniz? 🥸😛");
+        setTimeout(function() {
+            if (lastClosedTerm === 'term1') {
+                document.getElementById('toggleTerm1').checked = true;
+                toggleTerm('1');
+            } else if (lastClosedTerm === 'term2') {
+                document.getElementById('toggleTerm2').checked = true;
+                toggleTerm('2');
+            }
+        }, 5500);
+    }
+}
+
+document.getElementById('toggleTerm1').addEventListener('change', function() {
+    toggleTerm('1');
+    if (!this.checked) lastClosedTerm = 'term1';
+    checkBothTermsClosed();
+});
+
+document.getElementById('toggleTerm2').addEventListener('change', function() {
+    toggleTerm('2');
+    if (!this.checked) lastClosedTerm = 'term2'; 
+    checkBothTermsClosed();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    checkBothTermsClosed();
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const dersFormlar = document.querySelectorAll('.dersForm');
+
+    dersFormlar.forEach(dersForm => {
+        dersForm.querySelectorAll('input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); 
+                    let nextInput = this.nextElementSibling;
+                    if (nextInput && nextInput.tagName === 'INPUT') {
+                        nextInput.focus();
+                    } else {
+                        this.blur();
+                    }
+                }
+            });
+        });
+    });
+});
+
+$(document).ready(function() {
+    $('#gradeTableModal').on('show.bs.modal', function () {
+        $('#floating-buttons').css('z-index', '999');
+    }).on('hidden.bs.modal', function () {
+        $('#floating-buttons').css('z-index', '9998');
+    });
+});
+
+function updateFloatingButtonsPosition() {
+    var floatingButtons = document.getElementById('floating-buttons');
+    var windowHeight = window.innerHeight;
+    var scrollPosition = window.pageYOffset;
+    var documentHeight = document.documentElement.scrollHeight;
+    if (scrollPosition + windowHeight >= documentHeight) {
+        floatingButtons.style.position = 'fixed';
+        floatingButtons.style.bottom = '1px';
+	floatingButtons.style.right = '10px';
+    } else {
+        floatingButtons.style.position = 'fixed';
+        floatingButtons.style.bottom = '1px';
+	floatingButtons.style.right = '10px';
+    }
+}
+window.addEventListener('scroll', updateFloatingButtonsPosition);
+window.addEventListener('resize', updateFloatingButtonsPosition);
+document.addEventListener('DOMContentLoaded', updateFloatingButtonsPosition);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('baslik').addEventListener('click', function() {
+        location.reload(); 
+    });
+});
+function cikarDers(buttonElement) {
+    var dersDiv = buttonElement.closest('.ders');
+    var dersForm = dersDiv.parentNode;
+    var dersler = dersForm.getElementsByClassName('ders');
+    if (dersler.length > 1 && dersDiv) {
+        dersDiv.remove();
+        hesapla(); 
+        guncelleDersNumaralari(dersForm); 
+    }
+}
+
+function guncelleDersNumaralari(dersForm) {
+    var dersler = dersForm.getElementsByClassName('ders');
+    for (var i = 0; i < dersler.length; i++) {
+        var dersNumarasiInput = dersler[i].querySelector('.dersAdi');
+        dersNumarasiInput.placeholder = (i + 1) + ". Ders Adı";
+    }
+}
+
+function validateScore(input) {
+    var value = input.value;
+    if (value.length > 3 || (value.length === 3 && value > 100)) {
+        input.value = value.slice(0, -1);
+    }
+}
+
+
+function updateResultsAndPopups(toplam1, toplam2, isTerm1Active, isTerm2Active) {
+    var sonuc1El = document.getElementById('sonuc1');
+    var sonuc2El = document.getElementById('sonuc2');
+    var diplomaNotuEl = document.getElementById('diplomaNotu');
+
+    sonuc1El.classList.toggle('hidden', !isTerm1Active || toplam1 === null);
+    sonuc2El.classList.toggle('hidden', !isTerm2Active || toplam2 === null);
+    diplomaNotuEl.classList.toggle('hidden', !(isTerm1Active && isTerm2Active && toplam1 !== null && toplam2 !== null));
+
+    if (isTerm1Active && toplam1 !== null) {
+        sonuc1El.textContent = '1. Dönem Ortalaması: ' + toplam1;
+    }
+    if (isTerm2Active && toplam2 !== null) {
+        sonuc2El.textContent = '2. Dönem Ortalaması: ' + toplam2;
+    }
+
+    if (!diplomaNotuEl.classList.contains('hidden')) {
+        var toplamOrtalama = (parseFloat(toplam1) + parseFloat(toplam2)) / 2;
+        toplamOrtalama = toplamOrtalama % 1 === 0 ? toplamOrtalama.toFixed(2) : toplamOrtalama.toFixed(4);
+        diplomaNotuEl.textContent = 'Yıl Sonu Ortalamanız: ' + toplamOrtalama;
+        document.body.classList.add('diploma-notu-visible');
+    } else {
+        document.body.classList.remove('diploma-notu-visible');
+    }
+}
+
+
+
+function toggleTerm(termNumber) {
+    var termDiv = document.getElementById('term' + termNumber);
+    var isChecked = document.getElementById('toggleTerm' + termNumber).checked;
+    termDiv.style.display = isChecked ? 'block' : 'none';
+    hesapla(); 
+}
+        document.getElementById('toggleTerm1').addEventListener('change', function() {
+            var termDiv = document.getElementById('term1');
+            termDiv.classList.toggle('hidden', !this.checked);
+            updateButtonsPosition();
+            if (this.checked && termDiv.getElementsByClassName('ders').length === 0) {
+                ekleDers('dersForm1');
+            }
+        });
+
+        document.getElementById('toggleTerm2').addEventListener('change', function() {
+            var termDiv = document.getElementById('term2');
+            termDiv.classList.toggle('hidden', !this.checked);
+            updateButtonsPosition();
+            if (this.checked && termDiv.getElementsByClassName('ders').length === 0) {
+                ekleDers('dersForm2');
+            }
+        });
+function ekleDers(formId, dersBilgileri = {}) {
+    var dersForm = document.getElementById(formId);
+    var dersler = dersForm.getElementsByClassName('ders');
+    var dersNumarasi = dersler.length + 1;
+
+    var yeniDers = document.createElement('div');
+    yeniDers.className = 'ders';
+    yeniDers.innerHTML = `
+        <div class="input-group mb-1">
+            <input type="text" placeholder="${dersNumarasi}. Ders Adı" class="form-control dersAdi bg-light text-dark" value="${dersBilgileri.ad || ''}">
+        </div>
+        <div class="input-group mb-1">
+            <input type="number" placeholder="Ders Kredisi" class="form-control akts bg-light text-dark" min="1" onchange="hesapla()" value="${dersBilgileri.akts || ''}">
+            <input type="number" placeholder="Vize Notu" class="form-control vize bg-light text-dark" min="0" max="100" onchange="hesapla()" oninput="validateScore(this)" value="${dersBilgileri.vize || ''}">
+            <input type="number" placeholder="Final Notu" class="form-control final bg-light text-dark" min="0" max="100" onchange="hesapla()" oninput="validateScore(this)" value="${dersBilgileri.final || ''}">
+        </div>
+        <div class="input-group mb-1">
+            <button class="btn btn-secondary disabled harfNotu bg-black">Harf Notu</button>
+            <button class="btn disabled puanKarsiligi" style="background-color: black; color: white; ">Puan Notu</button>
+            <button class="btn basariDurumu" style="background-color: black; color: white;" disabled>Durum</button>
+            <button class="btn btn-danger delete-btn" onclick="cikarDers(this)">Dersi Sil</button>
+
+        </div>
+    `;
+    dersForm.appendChild(yeniDers);
+    dersForm.addEventListener('change', bilgileriKaydet);
+}
+    function hesapla() {
+    var toplam1 = document.getElementById('toggleTerm1').checked ? hesaplaDers('dersForm1') : null;
+    var toplam2 = document.getElementById('toggleTerm2').checked ? hesaplaDers('dersForm2') : null;
+    var sonuc1El = document.getElementById('sonuc1');
+    var sonuc2El = document.getElementById('sonuc2');
+    var diplomaNotuEl = document.getElementById('diplomaNotu');
+
+    sonuc1El.classList.add('hidden');
+    sonuc2El.classList.add('hidden');
+    diplomaNotuEl.classList.add('hidden');
+
+    if (document.getElementById('toggleTerm1').checked && toplam1 !== null) {
+        sonuc1El.textContent = '1. Dönem Ortalaması: ' + toplam1;
+        sonuc1El.classList.remove('hidden');
+    }
+
+    if (document.getElementById('toggleTerm2').checked && toplam2 !== null) {
+        sonuc2El.textContent = '2. Dönem Ortalaması: ' + toplam2;
+        sonuc2El.classList.remove('hidden');
+    }
+
+    if (document.getElementById('toggleTerm1').checked && toplam1 !== null && document.getElementById('toggleTerm2').checked && toplam2 !== null) {
+        var toplamOrtalama = (parseFloat(toplam1) + parseFloat(toplam2)) / 2;
+        diplomaNotuEl.textContent = 'Yıl Sonu Ortalamanız: ' + toplamOrtalama.toFixed(2);
+        diplomaNotuEl.classList.remove('hidden');
+        showPopup('Yıl Sonu Ortalamanız Hesaplandı: ' + toplamOrtalama.toFixed(2));
+    } else if (document.getElementById('toggleTerm1').checked && toplam1 !== null) {
+        showPopup('1. Dönem Ortalaması Hesaplandı: ' + toplam1);
+    } else if (document.getElementById('toggleTerm2').checked && toplam2 !== null) {
+        showPopup('2. Dönem Ortalaması Hesaplandı: ' + toplam2);
+    }
+    document.querySelectorAll('.basariDurumu').forEach(function(button) {
+        button.classList.add("hesaplandi");
+    });
+}
+
+
+        function temizle() {
+            ['dersForm1', 'dersForm2'].forEach(formId => {
+                var dersForm = document.getElementById(formId);
+                dersForm.innerHTML = '';
+                ekleDers(formId);
+            });
+            var sonuc1El = document.getElementById('sonuc1');
+            var sonuc2El = document.getElementById('sonuc2');
+            var diplomaNotuEl = document.getElementById('diplomaNotu');
+            sonuc1El.classList.add('hidden');
+            sonuc2El.classList.add('hidden');
+            diplomaNotuEl.classList.add('hidden');
+            document.getElementById('diplomaNotu').textContent = '';
+            document.getElementById('sonuc1').textContent = '';
+            document.getElementById('sonuc2').textContent = '';
+            localStorage.removeItem('kaydedilenDersler');
+        }
+
+function hesaplaDers(formId) {
+    var dersForm = document.getElementById(formId);
+    var dersler = dersForm.getElementsByClassName('ders');
+    var toplamPuan = 0;
+    var toplamAKTS = 0;
+
+    for (var ders of dersler) {
+        var akts = ders.getElementsByClassName('akts')[0].value;
+        var vize = ders.getElementsByClassName('vize')[0].value;
+        var final = ders.getElementsByClassName('final')[0].value;
+        if (!akts || !vize || !final) continue;
+
+        var not = (vize * 0.3 + final * 0.7);
+        var katsayi = notuKatsayiyaCevir(not);
+        toplamPuan += katsayi * parseFloat(akts);
+        toplamAKTS += parseFloat(akts);
+    }
+
+    if (toplamAKTS > 0) {
+        var ortalama = toplamPuan / toplamAKTS;
+        ortalama = ortalama % 1 === 0 ? ortalama.toFixed(2) : ortalama.toFixed(4);
+        for (var ders of dersler) {
+            var akts = ders.getElementsByClassName('akts')[0].value;
+            var vize = ders.getElementsByClassName('vize')[0].value;
+            var final = ders.getElementsByClassName('final')[0].value;
+            if (!akts || !vize || !final) continue;
+
+            var not = (vize * 0.3 + final * 0.7);
+            guncelleDurumVeHarfNotu(ders, not, notuKatsayiyaCevir(not), ortalama);
+        }
+
+        return ortalama;
+    } else {
+        return null;
+    }
+}
+
+function guncelleDurumVeHarfNotu(ders, not, katsayi, ortalama) {
+    var durumButon = ders.getElementsByClassName('basariDurumu')[0];
+    var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
+    var puanKarsiligiButon = ders.getElementsByClassName('puanKarsiligi')[0];
+    var symbol = '';
+    var harfNotu = hesaplaHarfNotu(not, ortalama);
+    harfNotuButon.textContent = harfNotu;
+    puanKarsiligiButon.textContent = katsayi.toFixed(2);
+
+    if (not < 50) {
+        durumButon.textContent = "Başarısız";
+        durumButon.style.backgroundColor = 'red';
+        durumButon.style.color = 'white';
+    } else if (not >= 50 && not < 60) {
+        if (ortalama >= 2.5) {
+            durumButon.textContent = "Şartlı Geçiş";
+            durumButon.style.backgroundColor = 'yellow';
+            durumButon.style.color = 'black';
+            harfNotuButon.textContent = 'DB';
+        } else {
+            durumButon.textContent = "Başarısız";
+            durumButon.style.backgroundColor = 'red';
+            durumButon.style.color = 'white';
+            harfNotuButon.textContent = 'DD';
+        }
+    } else {
+        durumButon.textContent = "Başarılı";
+        durumButon.style.backgroundColor = 'green';
+        durumButon.style.color = 'white';
+    }
+    if (not < 50) {
+        symbol = '⛔';
+    } else if (not >= 50 && not < 60) {
+        symbol = (ortalama >= 2.5) ? '❓' : '⛔'; 
+    } else {
+        symbol = '✅';
+    }
+    durumButon.setAttribute('data-symbol', symbol);
+}
+
+function hesaplaHarfNotu(not, ortalama) {
+    if (not >= 90) return 'AA';
+    else if (not >= 80) return 'BA';
+    else if (not >= 70) return 'BB';
+    else if (not >= 65) return 'CB';
+    else if (not >= 60) return 'CC';
+    else if (not >= 50) {
+        return ortalama >= 2.5 ? 'DB' : 'DD';
+    }
+    else if (not >= 30) return 'FD';
+    else return 'FF';
+}
+function notuKatsayiyaCevir(not) {
+    if (not >= 90) return 4.00;
+    else if (not >= 80) return 3.50;
+    else if (not >= 70) return 3.00;
+    else if (not >= 65) return 2.50;
+    else if (not >= 60) return 2.00;
+    else if (not >= 50) return 1.50;
+    else if (not >= 30) return 1.00;
+    else return 0.00;
+}
+
+
+
+       function guncelleHarfNotuVeDurumu(ders, not) {
+            var harfNotu = hesaplaHarfNotu(not);
+            var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
+            var puanKarsiligiButon = ders.getElementsByClassName('puanKarsiligi')[0];
+            var durumButon = ders.getElementsByClassName('basariDurumu')[0];
+
+            harfNotuButon.textContent = harfNotu;
+            puanKarsiligiButon.textContent = notuKatsayiyaCevir(not).toFixed(2);
+
+            if (harfNotu === 'FF' || harfNotu === 'FD') {
+                durumButon.style.backgroundColor = 'red';
+                durumButon.style.color = 'white';
+            } else if (harfNotu === 'DB' || harfNotu === 'DD') {
+                durumButon.style.backgroundColor = 'yellow';
+                durumButon.style.color = 'black';
+            } else if (harfNotu === 'CC' || harfNotu === 'CB') {
+                durumButon.style.backgroundColor = 'green';
+                durumButon.style.color = 'white'; 
+            } else {
+                durumButon.style.backgroundColor = 'green';
+                durumButon.style.color = 'white';
+            }
+            durumButon.classList.add("hesaplandi");
+        }
+
+        function hesaplaHarfNotu(not) {
+            if (not >= 90) return 'AA';
+            else if (not >= 80) return 'BA';
+            else if (not >= 70) return 'BB';
+            else if (not >= 65) return 'CB';
+            else if (not >= 60) return 'CC';
+            else if (not >= 50) return 'DB';
+            else if (not >= 30) return 'FD';
+            else return 'FF';
+        }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var welcomeModal = document.getElementById('welcomeModal');
+    var floatingButtons = document.getElementById('floating-buttons');
+    welcomeModal.style.display = 'flex';
+    floatingButtons.style.display = 'none';
+    welcomeModal.style.zIndex = "9999"; 
+    floatingButtons.style.zIndex = "0"; 
+    setTimeout(function() {
+        welcomeModal.style.display = 'none';
+        floatingButtons.style.display = 'block';
+        welcomeModal.style.zIndex = "1000"; 
+        floatingButtons.style.zIndex = "9998";
+    }, 2000);
+});
+
+
+
+        function bilgileriKaydet() {
+        let dersler1 = document.querySelectorAll('#dersForm1 .ders');
+        let dersler2 = document.querySelectorAll('#dersForm2 .ders');
+        let kaydedilecekDersler = [];
+
+        dersler1.forEach((ders, index) => {
+            kaydedilecekDersler.push({
+                term: 1,
+                ad: ders.querySelector('.dersAdi').value,
+                akts: ders.querySelector('.akts').value,
+                vize: ders.querySelector('.vize').value,
+                final: ders.querySelector('.final').value
+            });
+        });
+
+        dersler2.forEach((ders, index) => {
+            kaydedilecekDersler.push({
+                term: 2,
+                ad: ders.querySelector('.dersAdi').value,
+                akts: ders.querySelector('.akts').value,
+                vize: ders.querySelector('.vize').value,
+                final: ders.querySelector('.final').value
+            });
+        });
+
+        localStorage.setItem('kaydedilenDersler', JSON.stringify(kaydedilecekDersler));
+        }
+        function bilgileriYenidenYukle() {
+            let kaydedilenDersler = JSON.parse(localStorage.getItem('kaydedilenDersler'));
+
+            document.getElementById('dersForm1').innerHTML = '';
+            document.getElementById('dersForm2').innerHTML = '';
+
+            if (!kaydedilenDersler || kaydedilenDersler.length === 0) {
+                ekleDers('dersForm1');
+                ekleDers('dersForm2');
+            } else {
+                kaydedilenDersler.forEach(ders => {
+                    if (ders.term === 1) {
+                        ekleDers('dersForm1', ders);
+                    } else if (ders.term === 2) {
+                        ekleDers('dersForm2', ders);
+                    }
+                });
+            }
+            hesapla();
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            bilgileriYenidenYukle();
+        });
+        function guncelleSartliGecis(formId, termOrtalama) {
+    var dersForm = document.getElementById(formId);
+    var dersler = dersForm.getElementsByClassName('ders');
+
+    for (var ders of dersler) {
+        var akts = ders.getElementsByClassName('akts')[0].value;
+        var vize = ders.getElementsByClassName('vize')[0].value;
+        var final = ders.getElementsByClassName('final')[0].value;
+        if (!akts || !vize || !final) continue;
+
+        var not = (vize * 0.3 + final * 0.7);
+        var katsayi = notuKatsayiyaCevir(not);
+
+        if (termOrtalama < 2.5 && katsayi == 1.5) {
+            var durumButon = ders.getElementsByClassName('basariDurumu')[0];
+            var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
+            durumButon.textContent = "Şartlı Geçiş";
+            durumButon.style.backgroundColor = 'yellow';
+            durumButon.style.color = 'black';
+            harfNotuButon.textContent = "DB"; 
+        } else if (termOrtalama >= 2.5 && katsayi == 1.5) {
+            var durumButon = ders.getElementsByClassName('basariDurumu')[0];
+            var harfNotuButon = ders.getElementsByClassName('harfNotu')[0];
+            durumButon.textContent = "Başarısız";
+            durumButon.style.backgroundColor = 'red';
+            durumButon.style.color = 'black';
+            harfNotuButon.textContent = "DD";
+        }
+    }
+}
+
+     function showPopup(message) {
+    var popup = document.createElement('div');
+    popup.classList.add('popup');
+    popup.textContent = message;
+    document.body.appendChild(popup);
+    popup.style.zIndex = '9998';
+    popup.style.opacity = '1';
+    popup.style.position = 'fixed';
+    popup.style.top = '20px';
+    popup.style.left = '50%';
+    popup.style.transform = 'translateX(-50%)';
+    popup.style.backgroundColor = '#333';
+    popup.style.color = 'white';
+    popup.style.padding = '10px 20px';
+    popup.style.borderRadius = '5px';
+    popup.style.transition = 'opacity 0.3s';
+
+    setTimeout(function () {
+        popup.style.opacity = '0';
+        setTimeout(function () {
+            document.body.removeChild(popup);
+        }, 1000);
+    }, 3000);
+}
+let inputs = document.querySelectorAll('input');
+
+inputs.forEach((item) => {
+    item.addEventListener("focus", addClass);
+    item.addEventListener("blur", removeClass);
+});
+
+function addClass() {
+    document.querySelector('.btn-wrapper').classList.add('keyboard-is-open');
+}
+
+function removeClass() {
+    document.querySelector('.btn-wrapper').classList.remove('keyboard-is-open');
+}
+
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.10.2/dist/umd/popper.min.js"></script>
+<div id="warningModal" class="modal-overlay hidden">
+    <div class="modal-content">
+        <span id="warningText"></span>
+    </div>
+</div>
+
+</body>
+</html>
