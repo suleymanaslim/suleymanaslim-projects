@@ -67,6 +67,7 @@
     }
     .delete-btn {
         font-size: 0; 
+        content: "Sil";
     }
     .delete-btn::after {
         content: 'Sil';
@@ -287,15 +288,17 @@
 
         .btn-danger {
             background-color: #dc3545;
+            color: white;
+            font-size: 16px;
         }
 
-        .btn-warning:hover, .btn-danger:hover {
-            background-color: #dc3545;
+        .btn-warning:hover{
+            background-color: #ffc107;
             color: #fff;
         }
 
         .btn-danger:hover {
-            color: #dc3545;
+            color: white;
         }
     }
 
@@ -338,15 +341,11 @@
     }
     @media (max-width: 375px) {
         .basariDurumu {
-            font-size: inherit;
-            color: inherit;
-        }
-        .basariDurumu.hesaplandi {
-            font-size: 0;
-            color: black !important;
+            font-size: 16px;
+            color: black;
         }
         .basariDurumu.hesaplandi::after {
-            font-size: 16px; 
+            font-size: 16px;
             content: attr(data-symbol);
         }
     }
@@ -361,6 +360,14 @@
     }
     #floating-buttons .btn {
         flex-basis: 48%; 
+    }
+    .basariDurumu {
+        font-size: 0 !important;
+    }
+    .basariDurumu::after {
+        content: attr(data-symbol) !important;
+        font-size: 16px !important;
+        color: black !important;
     }
     }
     @media (min-width: 768px) {
@@ -389,6 +396,28 @@ a[href*="instagram.com"] {
     text-decoration: none;
     border: none; 
 }
+@media (min-width: 769px) {
+    .delete-btn {
+        font-size: 16px;
+        content: 'Dersi Sil'; 
+    }
+    .delete-btn::after {
+        content: none; 
+    }
+}
+@media (max-width: 768px) {
+    .delete-btn {
+        font-size: 0;
+    }
+    .delete-btn::after {
+        content: 'Sil'; 
+        font-size: 16px; 
+    }
+}
+button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
 </style>
 
 </head>
@@ -416,12 +445,11 @@ a[href*="instagram.com"] {
     <div class="container text-center">
 <h1 id="baslik" style="cursor: pointer;">TRAKYA ÜNİVERSİTESİ GNO&YNO HESAPLAYICI</h1>
         <div class="d-flex justify-content-center align-items-center">
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#gradeTableModal">
+            <button type="button" class="btn btn-link helpsection" data-toggle="modal" data-target="#gradeTableModal">
                 <h2 class="badge bg-primary text-wrap">? Yardım</h2>
             </button>
         </div>
     </div>
-    <!-- Yardım Modal -->
     <div class="modal fade" id="gradeTableModal" tabindex="-1" role="dialog" aria-labelledby="gradeTableModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -622,6 +650,10 @@ function cikarDers(buttonElement) {
         dersDiv.remove();
         hesapla(); 
         guncelleDersNumaralari(dersForm); 
+    }
+    else {
+        alert("İlk ders silinemez!");
+        return;
     }
 }
 
@@ -1048,6 +1080,21 @@ function addClass() {
 function removeClass() {
     document.querySelector('.btn-wrapper').classList.remove('keyboard-is-open');
 }
+
+function adjustButtonsForKeyboard() {
+    var floatingButtons = document.getElementById('floating-buttons');
+    if (window.innerHeight < 500) { 
+        floatingButtons.style.position = 'absolute';
+        floatingButtons.style.bottom = '100px';
+    } else {
+        floatingButtons.style.position = 'fixed';
+        floatingButtons.style.bottom = '20px';
+    }
+}
+document.querySelectorAll('input').forEach(input => {
+    input.addEventListener('focus', adjustButtonsForKeyboard);
+    input.addEventListener('blur', adjustButtonsForKeyboard);
+});
 
 </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
