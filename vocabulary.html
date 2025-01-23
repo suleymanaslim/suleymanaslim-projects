@@ -187,35 +187,39 @@
         }
 
         function checkAnswer(answer) {
-            let isCorrect = false;
+                let isCorrect = false;
+                if (Array.isArray(currentWord.mean)) {
+                    const meanings = currentWord.mean.flatMap(mean => mean.split(',').map(m => m.trim().toLowerCase()));
+                    isCorrect = meanings.some(mean => mean === answer.toLowerCase().trim());
+                } else if (typeof currentWord.mean === "string") {
+                    const meanings = currentWord.mean.split(',').map(m => m.trim().toLowerCase());
+                    isCorrect = meanings.some(mean => mean === answer.toLowerCase().trim());
+                }
 
-            if (typeof currentWord.mean === "string") {
-                const meanings = currentWord.mean.split(',').map(mean => mean.trim().toLowerCase());
-                isCorrect = meanings.includes(answer.toLowerCase().trim());
+                currentWord.status = isCorrect ? 1 : 0;
+                saveWords();
+
+                const displayMean = Array.isArray(currentWord.mean) ? currentWord.mean : currentWord.mean.split(',').map(m => m.trim());
+
+                const wordMeanElement = document.getElementById('wordMean');
+                wordMeanElement.innerHTML = `<span class='correct-answer'>${displayMean.join(', ')}</span>`;
+                wordMeanElement.style.display = 'block';
+
+                if (isCorrect) {
+                    completedWords++;
+                    updateWordCount();
+                    playAudio('correctSound');
+                    updateBackground('bg-success');
+                } else {
+                    playAudio('incorrectSound');
+                    updateBackground('bg-danger');
+                }
+
+                setTimeout(() => {
+                    updateBackground('bg-dark');
+                    displayNextWord();
+                }, 3000);
             }
-
-            currentWord.status = isCorrect ? 1 : 0; 
-            saveWords();
-
-            const wordMeanElement = document.getElementById('wordMean');
-            wordMeanElement.innerHTML = `<span class='correct-answer'>${currentWord.mean}</span>`;
-            wordMeanElement.style.display = 'block';
-
-            if (isCorrect) {
-                completedWords++;
-                updateWordCount();
-                playAudio('correctSound');
-                updateBackground('bg-success');
-            } else {
-                playAudio('incorrectSound');
-                updateBackground('bg-danger');
-            }
-
-            setTimeout(() => {
-                updateBackground('bg-dark');
-                displayNextWord();
-            }, 3000);
-        }
 
         function updateWordCount() {
             document.getElementById('wordCount').textContent = `Tamamlanan Kelimeler: ${completedWords}`;
