@@ -1,0 +1,669 @@
+[
+    {
+        "id": 1,
+        "word": "inquiry",
+        "mean": "araştırma",
+        "status": 0
+    },
+    {
+        "id": 2,
+        "word": "relation",
+        "mean": "ilişki",
+        "status": 0
+    },
+    {
+        "id": 3,
+        "word": "important",
+        "mean": "önemli",
+        "status": 0
+    },
+    {
+        "id": 4,
+        "word": "conflict",
+        "mean": ["çatışma, anlaşmazlık"],
+        "status": 0
+    },
+    {
+        "id": 5,
+        "word": "challenge",
+        "mean": ["zorluk, güçlük"],
+        "status": 0
+    },
+    {
+        "id": 6,
+        "word": "division",
+        "mean": ["paylaştırma, bölüşme"],
+        "status": 0
+    },
+    {
+        "id": 7,
+        "word": "implication",
+        "mean": "çıkarım",
+        "status": 0
+    },
+    {
+        "id": 8,
+        "word": "drawback",
+        "mean": ["sorun, sakınca"],
+        "status": 0
+    },
+    {
+        "id": 9,
+        "word": "requirement",
+        "mean": ["gereksinim, ihtiyaç"],
+        "status": 0
+    },
+    {
+        "id": 10,
+        "word": "save",
+        "mean": "kurtarmak",
+        "status": 0
+    },
+    {
+        "id": 11,
+        "word": "convenience",
+        "mean": ["uygunluk, kolaylık"],
+        "status": 0
+    },
+    {
+        "id": 12,
+        "word": "enhance",
+        "mean": ["geliştirmek, artırmak"],
+        "status": 0
+    },
+    {
+        "id": 13,
+        "word": "detect",
+        "mean": "tespit etmek",
+        "status": 0
+    },
+    {
+        "id": 14,
+        "word": "manipulate",
+        "mean": "yönlendirmek",
+        "status": 0
+    },
+    {
+        "id": 15,
+        "word": "progress",
+        "mean": ["gelişmek, ilerlemek"],
+        "status": 0
+    },
+    {
+        "id": 16,
+        "word": "transmit",
+        "mean": ["aktarmak, iletmek"],
+        "status": 0
+    },
+    {
+        "id": 17,
+        "word": "inherit",
+        "mean": "miras olarak almak",
+        "status": 0
+    },
+    {
+        "id": 18,
+        "word": "surround",
+        "mean": ["çevrelemek, kuşatmak"],
+        "status": 0
+    },
+    {
+        "id": 19,
+        "word": "protect",
+        "mean": "korumak",
+        "status": 0
+    },
+    {
+        "id": 20,
+        "word": "delicate",
+        "mean": ["hassas, zayıf"],
+        "status": 0
+    },
+    {
+        "id": 21,
+        "word": "excessive",
+        "mean": ["aşırı, fazla"],
+        "status": 0
+    },
+    {
+        "id": 22,
+        "word": "vigorous",
+        "mean": ["baskın, güçlü"],
+        "status": 0
+    },
+    {
+        "id": 23,
+        "word": "elaborate",
+        "mean": ["karmaşık, ayrıntılı"],
+        "status": 0
+    },
+    {
+        "id": 24,
+        "word": "swift",
+        "mean": ["hızlı, çabuk"],
+        "status": 0
+    },
+    {
+        "id": 25,
+        "word": "mutual",
+        "mean": ["karşılıklı, ortak"],
+        "status": 0
+    },
+    {
+        "id": 26,
+        "word": "convincing",
+        "mean": ["ikna edici, inandırıcı"],
+        "status": 0
+    },
+    {
+        "id": 27,
+        "word": "drastic",
+        "mean": ["ani, sert, güçlü"],
+        "status": 0
+    },
+    {
+        "id": 28,
+        "word": "pure",
+        "mean": ["sade, saf"],
+        "status": 0
+    },
+    {
+        "id": 29,
+        "word": "deny",
+        "mean": ["inkar etmek, geri çevirmek"],
+        "status": 0
+    },
+    {
+        "id": 30,
+        "word": "hinder",
+        "mean": "engellemek",
+        "status": 0
+    },
+    {
+        "id": 31,
+        "word": "suspend",
+        "mean": "askıya almak",
+        "status": 0
+    },
+    {
+        "id": 32,
+        "word": "create",
+        "mean": ["yaratmak, icat etmek"],
+        "status": 0
+    },
+    {
+        "id": 33,
+        "word": "eliminate",
+        "mean": ["yok etmek, ortadan kaldırmak"],
+        "status": 0
+    },
+    {
+        "id": 34,
+        "word": "encompass",
+        "mean": ["kapsamak, içermek"],
+        "status": 0
+    },
+    {
+        "id": 35,
+        "word": "distract",
+        "mean": "dikkatini dağıtmak",
+        "status": 0
+    },
+    {
+        "id": 36,
+        "word": "solution",
+        "mean": "çözüm",
+        "status": 0
+    },
+    {
+        "id": 37,
+        "word": "make up for",
+        "mean": "telafi etmek",
+        "status": 0
+    },
+    {
+        "id": 38,
+        "word": "look up to",
+        "mean": "hayran olmak",
+        "status": 0
+    },
+    {
+        "id": 39,
+        "word": "come up with",
+        "mean": "önermek",
+        "status": 0
+    },
+    {
+        "id": 40,
+        "word": "let",
+        "mean": "izin vermek",
+        "status": 0
+    },
+    {
+        "id": 41,
+        "word": "alter",
+        "mean": "değiştirmek",
+        "status": 0
+    },
+    {
+        "id": 42,
+        "word": "research",
+        "mean": "araştırma",
+        "status": 0
+    },
+    {
+        "id": 43,
+        "word": "define",
+        "mean": ["tanımlamak, betimlemek"],
+        "status": 0
+    },
+    {
+        "id": 44,
+        "word": "consume",
+        "mean": ["tüketmek, harcamak"],
+        "status": 0
+    },
+    {
+        "id": 45,
+        "word": "responsible",
+        "mean": "sorumlu",
+        "status": 0
+    },
+    {
+        "id": 46,
+        "word": "prone",
+        "mean": ["savunmasız, zayıf"],
+        "status": 0
+    },
+    {
+        "id": 47,
+        "word": "allow",
+        "mean": ["izin vermek, olanak sağlamak"],
+        "status": 0
+    },
+    {
+        "id": 48,
+        "word": "provide",
+        "mean": "sağlamak",
+        "status": 0
+    },
+    {
+        "id": 49,
+        "word": "destroy",
+        "mean": "yok etmek",
+        "status": 0
+    },
+    {
+        "id": 50,
+        "word": "significantly",
+        "mean": ["önemli ölçüde, çok"],
+        "status": 0
+    },
+    {
+        "id": 51,
+        "word": "reduce",
+        "mean": ["azalmak, azaltmak"],
+        "status": 0
+    },
+    {
+        "id": 52,
+        "word": "burden",
+        "mean": "yük",
+        "status": 0
+    },
+    {
+        "id": 53,
+        "word": "impact",
+        "mean": "etki",
+        "status": 0
+    },
+    {
+        "id": 54,
+        "word": "confine",
+        "mean": "sınırlandırmak",
+        "status": 0
+    },
+    {
+        "id": 55,
+        "word": "respond",
+        "mean": "karşılık vermek",
+        "status": 0
+    },
+    {
+        "id": 56,
+        "word": "uncover",
+        "mean": ["açığa çıkarmak, ortaya koymak"],
+        "status": 0
+    },
+    {
+        "id": 57,
+        "word": "reverse",
+        "mean": "tersine çevirmek",
+        "status": 0
+    },
+    {
+        "id": 58,
+        "word": "modify",
+        "mean": "değiştirmek",
+        "status": 0
+    },
+    {
+        "id": 59,
+        "word": "vague",
+        "mean": "belirsiz",
+        "status": 0
+    },
+    {
+        "id": 60,
+        "word": "partial",
+        "mean": "kısmen",
+        "status": 0
+    },
+    {
+        "id": 61,
+        "word": "notable",
+        "mean": "kayda değer",
+        "status": 0
+    },
+    {
+        "id": 62,
+        "word": "predict",
+        "mean": ["tahmin etmek, ön görmek"],
+        "status": 0
+    },
+    {
+        "id": 63,
+        "word": "experience",
+        "mean": "tecrübe etmek",
+        "status": 0
+    },
+    {
+        "id": 64,
+        "word": "intense",
+        "mean": "yoğun",
+        "status": 0
+    },
+    {
+        "id": 65,
+        "word": "evidence",
+        "mean": "kanıt",
+        "status": 0
+    },
+    {
+        "id": 66,
+        "word": "flourish",
+        "mean": ["gelişmek, ilerlemek"],
+        "status": 0
+    },
+    {
+        "id": 67,
+        "word": "lead to",
+        "mean": ["sebep olmak, yol açmak"],
+        "status": 0
+    },
+    {
+        "id": 68,
+        "word": "objective",
+        "mean": ["amaç, hedef"],
+        "status": 0
+    },
+    {
+        "id": 69,
+        "word": "accelerate",
+        "mean": "hızlandırmak",
+        "status": 0
+    },
+    {
+        "id": 70,
+        "word": "available",
+        "mean": "mevcut",
+        "status": 0
+    },
+    {
+        "id": 71,
+        "word": "resist",
+        "mean": "direnmek",
+        "status": 0
+    },
+    {
+        "id": 72,
+        "word": "rule out",
+        "mean": "hesaba katmamak",
+        "status": 0
+    },
+    {
+        "id": 73,
+        "word": "indicate",
+        "mean": ["göstermek, ortaya koymak"],
+        "status": 0
+    },
+    {
+        "id": 74,
+        "word": "evaluate",
+        "mean": "değerlendirmek",
+        "status": 0
+    },
+    {
+        "id": 75,
+        "word": "look after",
+        "mean": ["bakmak, ilgilenmek"],
+        "status": 0
+    },
+    {
+        "id": 76,
+        "word": "make up",
+        "mean": "oluşturmak",
+        "status": 0
+    },
+    {
+        "id": 77,
+        "word": "obtain",
+        "mean": "elde etmek",
+        "status": 0
+    },
+    {
+        "id": 78,
+        "word": "harmful",
+        "mean": "zararlı",
+        "status": 0
+    },
+    {
+        "id": 79,
+        "word": "increase",
+        "mean": ["artmak, artırmak"],
+        "status": 0
+    },
+    {
+        "id": 80,
+        "word": "include",
+        "mean": ["içermek, kapsamak"],
+        "status": 0
+    },
+    {
+        "id": 81,
+        "word": "attract",
+        "mean": "etkilemek",
+        "status": 0
+    },
+    {
+        "id": 82,
+        "word": "depend on",
+        "mean": "bağlı olmak",
+        "status": 0
+    },
+    {
+        "id": 83,
+        "word": "develop",
+        "mean": ["gelişmek, geliştirmek"],
+        "status": 0
+    },
+    {
+        "id": 84,
+        "word": "explore",
+        "mean": ["keşfetmek, aramak"],
+        "status": 0
+    },
+    {
+        "id": 85,
+        "word": "establish",
+        "mean": ["kurmak, inşa etmek"],
+        "status": 0
+    },
+    {
+        "id": 86,
+        "word": "influence",
+        "mean": "etki",
+        "status": 0
+    },
+    {
+        "id": 87,
+        "word": "solve",
+        "mean": "çözmek",
+        "status": 0
+    },
+    {
+        "id": 88,
+        "word": "propose",
+        "mean": ["önermek, tavsiye etmek"],
+        "status": 0
+    },
+    {
+        "id": 89,
+        "word": "approve",
+        "mean": "onaylamak",
+        "status": 0
+    },
+    {
+        "id": 90,
+        "word": "expect",
+        "mean": "ummak",
+        "status": 0
+    },
+    {
+        "id": 91,
+        "word": "affect",
+        "mean": "etkilemek",
+        "status": 0
+    },
+    {
+        "id": 92,
+        "word": "cause",
+        "mean": ["sebep olmak, yol açmak"],
+        "status": 0
+    },
+    {
+        "id": 93,
+        "word": "determine",
+        "mean": "belirlemek",
+        "status": 0
+    },
+    {
+        "id": 94,
+        "word": "hazardous",
+        "mean": "tehlikeli",
+        "status": 0
+    },
+    {
+        "id": 95,
+        "word": "desire",
+        "mean": "arzulamak",
+        "status": 0
+    },
+    {
+        "id": 96,
+        "word": "vulnerable",
+        "mean": ["savunmasız, hassas"],
+        "status": 0
+    },
+    {
+        "id": 97,
+        "word": "struggle",
+        "mean": "mücadele",
+        "status": 0
+    },
+    {
+        "id": 98,
+        "word": "face",
+        "mean": ["yüzleşmek, karşılaşmak"],
+        "status": 0
+    },
+    {
+        "id": 99,
+        "word": "willing",
+        "mean": ["istekli, hevesli"],
+        "status": 0
+    },
+    {
+        "id": 100,
+        "word": "escape",
+        "mean": ["kurtulmak, kaçmak"],
+        "status": 0
+    },
+    {
+        "id": 101,
+        "word": "measure",
+        "mean": ["tedbir, önlem"],
+        "status": 0
+    },
+    {
+        "id": 102,
+        "word": "observe",
+        "mean": "gözlemlemek",
+        "status": 0
+    },
+    {
+        "id": 103,
+        "word": "incredible",
+        "mean": "inanılmaz",
+        "status": 0
+    },
+    {
+        "id": 104,
+        "word": "force",
+        "mean": ["güç, kuvvet"],
+        "status": 0
+    },
+    {
+        "id": 105,
+        "word": "examine",
+        "mean": "incelemek",
+        "status": 0
+    },
+    {
+        "id": 106,
+        "word": "extensively",
+        "mean": ["kapsamlı, kapsamlı bir şekilde"],
+        "status": 0
+    },
+    {
+        "id": 107,
+        "word": "attention",
+        "mean": "dikkat",
+        "status": 0
+    },
+    {
+        "id": 108,
+        "word": "notorious",
+        "mean": ["namı kötü, kötü şöhretli"],
+        "status": 0
+    },
+    {
+        "id": 109,
+        "word": "avoid",
+        "mean": "kaçınmak",
+        "status": 0
+    },
+    {
+        "id": 110,
+        "word": "gain",
+        "mean": ["kazanmak, elde etmek"],
+        "status": 0
+    },
+    {
+        "id": 111,
+        "word": "deliberate",
+        "mean": "kasten, bilerek",
+        "status": 0
+    }
+
+]
