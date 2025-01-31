@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#007bff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Fitness Takip">
+    <title>Fitness Takip</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/ios/32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/ios/16.png">
+    <link rel="shortcut icon" href="./assets/icons/favicon.ico">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./assets/icons/ios/180.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src='https://unpkg.com/tesseract.js@4.1.1/dist/tesseract.min.js'></script>
+    <script src='https://unpkg.com/tesseract.js-core@4.0.4/tesseract-core.wasm.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- SweetAlert2 CSS ve JS -->
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-minimal@5/minimal.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+            <button class="tab-btn" data-tab="workouts">Antrenmanlar</button>
+            <button class="tab-btn" data-tab="measurements">Ölçümler</button>
+            <button class="tab-btn" data-tab="stats">İstatistikler</button>
+        </nav>
+
+        <main id="content">
+            <!-- Dashboard Tab -->
+            <section id="dashboard" class="tab-content active">
+                <div class="workout-timer">
+                    <h2>Antrenman Zamanlayıcı</h2>
+                    <div class="timer-display">00:00:00</div>
+                    <div class="workout-type-buttons mb-3">
+                        <button class="btn btn-outline-primary workout-type-btn" data-type="göğüs">Göğüs</button>
+                        <button class="btn btn-outline-primary workout-type-btn" data-type="sırt">Sırt</button>
+                        <button class="btn btn-outline-primary workout-type-btn" data-type="bacak">Bacak</button>
+                    </div>
+                    <button id="startWorkout" class="btn btn-primary">Antrenmana Başla</button>
+                    <button id="pauseWorkout" class="btn btn-warning" style="display:none">Duraklat</button>
+                    <button id="stopWorkout" class="btn btn-danger" style="display:none">Bitir</button>
+                </div>
+                <div class="rest-timer" style="display:none">
+                    <h3>Set Arası Mola (Dakika)</h3>
+                    <div class="rest-duration-buttons">
+                        <button class="btn btn-outline-primary rest-duration-btn" data-duration="60">1</button>
+                        <button class="btn btn-outline-primary rest-duration-btn" data-duration="120">2</button>
+                        <button class="btn btn-outline-primary rest-duration-btn" data-duration="180">3</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mola Sayacı Modal -->
+            <div id="restTimerModal" class="modal">
+                <div class="modal-content">
+                    <div class="rest-timer-display">
+                        <span id="restTimeLeft">00:00</span>
+                    </div>
+                    <div class="rest-timer-controls mt-3">
+                        <button id="cancelRest" class="btn btn-danger">Molayı Bitir</button>
+                        <button id="addMinute" class="btn btn-primary">+1 Dakika</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Antrenmanlar Tab -->
+            <section id="workouts" class="tab-content">
+                <div class="workouts-header">
+                    <h2>Antrenmanlarım</h2>
+                    <button id="clearWorkouts" class="btn btn-outline-danger btn-sm" title="Tüm Antrenmanları Sil"> 
+                    <i class="fas fa-trash"></i> 
+                  </button> 
+                </div>
+                <div class="workouts-list">
+                    <!-- Antrenmanlar buraya dinamik olarak eklenecek -->
+                </div>
+            </section>
+
+            <section id="measurements" class="tab-content">
+                <div class="measurements-container">
+                    <div class="measurements-header">
+                        <h2>Ölçümlerim</h2>
+                        <button id="addMeasurement" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Ölçüm Ekle
+                        </button>
+                    </div>
+
+                    <!-- Ölçüm Listesi -->
+                    <div class="measurements-list">
+                        <!-- Burası JavaScript ile doldurulacak -->
+                    </div>
+
+                    <!-- Ölçüm Ekleme Modalı -->
+                    <div id="measurementModal" class="modal">
+                        <div class="modal-content measurement-modal">
+                            <div class="modal-header">
+                                <h3>Yeni Ölçüm</h3>
+                                <button class="close-modal">&times;</button>
+                            </div>
+                            
+                            <div class="modal-body">
+                                <div class="input-methods">
+                                    <button id="manualEntry" class="btn btn-outline-primary">Manuel Giriş</button>
+                                    <button id="photoEntry" class="btn btn-outline-primary">Fotoğraftan Giriş</button>
+                                </div>
+                                
+                                <input type="file" id="measurementPhoto" accept="image/*" style="display: none;">
+                                
+                                <form id="measurementForm" class="measurement-form" style="display: none;">
+                                    <div class="form-group">
+                                        <label>Tarih:</label>
+                                        <input type="date" id="measurementDate" required class="form-control">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Vücut Tipi:</label>
+                                        <select id="bodyType" class="form-control">
+                                            <option value="standart">Standart</option>
+                                            <option value="ektomorf">Ektomorf</option>
+                                            <option value="mezomorf">Mezomorf</option>
+                                            <option value="endomorf">Endomorf</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label>Boy (cm):</label>
+                                            <input type="number" id="height" value="172" readonly class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Kilo (kg):</label>
+                                            <input type="number" step="0.1" id="weight" required class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>Vücut Yağ (%):</label>
+                                            <input type="number" step="0.1" id="bodyFat" required class="form-control">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label>BMI:</label>
+                                            <input type="number" step="0.1" id="bmi" readonly class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="measurement-sections">
+                                        <!-- Sol Kol -->
+                                        <div class="measurement-section">
+                                            <h4>Sol Kol</h4>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (%):</label>
+                                                    <input type="number" step="0.01" id="leftArmFatPercentage" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (kg):</label>
+                                                    <input type="number" step="0.1" id="leftArmFatKg" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Kas (kg):</label>
+                                                    <input type="number" step="0.01" id="leftArmMuscle" required class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Sağ Kol -->
+                                        <div class="measurement-section">
+                                            <h4>Sağ Kol</h4>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (%):</label>
+                                                    <input type="number" step="0.01" id="rightArmFatPercentage" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (kg):</label>
+                                                    <input type="number" step="0.1" id="rightArmFatKg" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Kas (kg):</label>
+                                                    <input type="number" step="0.01" id="rightArmMuscle" required class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Gövde -->
+                                        <div class="measurement-section">
+                                            <h4>Gövde</h4>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (%):</label>
+                                                    <input type="number" step="0.01" id="torsoFatPercentage" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (kg):</label>
+                                                    <input type="number" step="0.1" id="torsoFatKg" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Kas (kg):</label>
+                                                    <input type="number" step="0.01" id="torsoMuscle" required class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Sol Bacak -->
+                                        <div class="measurement-section">
+                                            <h4>Sol Bacak</h4>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (%):</label>
+                                                    <input type="number" step="0.01" id="leftLegFatPercentage" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (kg):</label>
+                                                    <input type="number" step="0.1" id="leftLegFatKg" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Kas (kg):</label>
+                                                    <input type="number" step="0.01" id="leftLegMuscle" required class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Sağ Bacak -->
+                                        <div class="measurement-section">
+                                            <h4>Sağ Bacak</h4>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (%):</label>
+                                                    <input type="number" step="0.01" id="rightLegFatPercentage" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Yağ (kg):</label>
+                                                    <input type="number" step="0.1" id="rightLegFatKg" required class="form-control">
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label>Kas (kg):</label>
+                                                    <input type="number" step="0.01" id="rightLegMuscle" required class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Sıvı Ağırlığı -->
+                                        <div class="measurement-section">
+                                            <h4>Sıvı Ağırlığı</h4>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-4">
+                                                    <label>Sıvı (kg):</label>
+                                                    <input type="number" step="0.1" id="liquidWeight" required class="form-control">
+                                                    <small class="form-text text-muted">Normal aralık: 55-66 kg</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="stats" class="tab-content">
+                <div class="stats-container">
+                    <div class="stats-header">
+                        <h2>İstatistiklerim</h2>
+                        <div class="stats-filters">
+                            <select id="statsType" class="form-select">
+                                <option value="all">Tüm İstatistikler</option>
+                                <option value="measurements">Vücut Ölçümleri</option>
+                                <option value="göğüs">Göğüs Antrenmanı</option>
+                                <option value="sırt">Sırt Antrenmanı</option>
+                                <option value="bacak">Bacak Antrenmanı</option>
+                            </select>
+                            <select id="statsPeriod" class="form-select">
+                                <option value="week">Bu Hafta</option>
+                                <option value="month">Bu Ay</option>
+                                <option value="year">Bu Yıl</option>
+                                <option value="all">Tüm Zamanlar</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Genel İstatistikler -->
+                    <div class="stats-summary">
+                        <div class="stat-card">
+                            <h3>Toplam Antrenman</h3>
+                            <div id="totalWorkouts" class="stat-value">0</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Toplam Süre</h3>
+                            <div id="totalDuration" class="stat-value">0 saat</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Yakılan Kalori</h3>
+                            <div id="totalCalories" class="stat-value">0 kcal</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Kardiyo Süresi</h3>
+                            <div id="totalCardio" class="stat-value">0 dk</div>
+                        </div>
+                    </div>
+
+                    <!-- Grafik Alanları -->
+                    <div class="stats-charts">
+                        <div class="chart-container">
+                            <h3>Antrenman Sıklığı</h3>
+                            <canvas id="workoutFrequencyChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Kardiyo Performansı</h3>
+                            <canvas id="cardioPerformanceChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Vücut Yağ Oranı Değişimi</h3>
+                            <canvas id="bodyStatsChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Kas Kütlesi Değişimi</h3>
+                            <canvas id="muscleStatsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Hareket Bazlı İstatistikler -->
+                    <div class="exercise-stats" style="display: none;">
+                        <h3>Hareket Bazlı İlerlemeler</h3>
+                        <div id="exerciseProgress"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/workout.js"></script>
+    <script src="js/measurements.js"></script>
+    <script src="js/stats.js"></script>
+    <!-- Supabase -->
+    <script type="module">
+        import supabase from './js/supabase.js';
+        window.supabase = supabase;
+    </script>
+</body>
+</html> 

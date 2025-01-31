@@ -1,0 +1,1448 @@
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #3b82f6;
+    --accent-color: #60a5fa;
+    --success-color: #10B981;
+    --danger-color: #EF4444;
+    --background-color: #ffffff;
+    --text-color: #1f2937;
+    --light-text: #6b7280;
+    --card-bg: white;
+    --border-color: #E5E7EB;
+    --h1-size: clamp(1.5rem, 5vw, 2.5rem);
+    --h2-size: clamp(1.25rem, 4vw, 2rem);
+    --body-size: clamp(0.875rem, 3vw, 1rem);
+    --system-fonts: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --primary-color: #3B82F6;
+    --secondary-color: #9CA3AF;
+    --background-color: #1F2937;
+    --text-color: #F9FAFB;
+    --card-bg: #374151;
+    --border-color: #4B5563;
+}
+
+/* Base Styles */
+body {
+    font-family: var(--system-fonts);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    font-size: var(--body-size);
+    transition: background-color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn i {
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1D4ED8;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* Forms */
+.form-control {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Cards and Containers */
+.card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.chart-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content {
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Stats Cards */
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Exercise Cards */
+.exercise-progress-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.exercise-progress-card:hover {
+    transform: translateY(-3px);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Navbar düzenlemesi */
+.nav-tabs {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.75rem;
+    max-width: 250px;
+    margin: 1rem auto;
+    position: relative;
+    touch-action: pan-x; /* Yatay kaydırma için */
+}
+
+.tab-btn {
+    display: none;
+}
+
+.tab-btn.active {
+    display: block;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+/* Ok tuşları */
+.nav-tabs::before,
+.nav-tabs::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    height: 32px;
+    background-size: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.nav-tabs::before {
+    left: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z'/%3E%3C/svg%3E");
+}
+
+.nav-tabs::after {
+    right: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z'/%3E%3C/svg%3E");
+}
+
+.nav-tabs:hover::before,
+.nav-tabs:hover::after {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .nav-tabs {
+        padding: 0.5rem;
+        max-width: 250px;
+    }
+
+    .tab-btn {
+        font-size: 0.9rem;
+    }
+
+    .nav-tabs::before {
+        left: 5px;
+    }
+
+    .nav-tabs::after {
+        right: 5px;
+    }
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.rest-timer-display {
+    font-size: 3.5rem;
+    margin: 1rem 0;
+}
+
+.rest-timer-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.rest-timer-controls .btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.workout-type-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.workout-type-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.rest-duration-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.rest-duration-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ölçümler Listesi */
+.measurements-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.measurements-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+#addMeasurement {
+    align-self: flex-end;
+    background-color: rgba(37, 99, 235, 0.9);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    padding: 0.75rem 1.5rem;
+}
+
+#addMeasurement:hover {
+    background-color: rgba(37, 99, 235, 1);
+}
+
+.measurements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.measurement-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.measurement-summary {
+    margin: 1rem 0;
+    color: #666;
+}
+
+.measurement-summary p {
+    margin: 0.5rem 0;
+}
+
+.view-details {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+/* Ölçüm Modalı */
+.measurement-modal {
+    max-width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.input-methods {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Loading Message */
+.loading-message {
+    text-align: center;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+}
+
+.loading-message p {
+    margin-top: 1rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+.summary-row p {
+    margin: 0;
+    flex: 1;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.detail-section {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.detail-section h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+}
+
+.detail-section p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+hr {
+    margin: 1rem 0;
+    border-color: #eee;
+}
+
+/* Ölçüm detayları için modal tasarımı */
+.measurement-details-modal {
+    max-width: 800px;
+    width: 90%;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.details-container {
+    display: flex;
+    gap: 2rem;
+    height: 100%;
+}
+
+.body-visualization {
+    flex: 0 0 300px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: white;
+}
+
+.body-visualization img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.details-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.detail-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.detail-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.detail-section p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Mobil görünüm için düzenlemeler */
+@media (max-width: 768px) {
+    .measurement-details-modal {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .modal-content {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        border-radius: 0;
+        padding: 1rem;
+    }
+
+    .details-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .body-visualization {
+        flex: 0 0 auto;
+        height: 200px;
+        margin-bottom: 1rem;
+        position: relative;
+        top: auto;
+    }
+
+    .body-visualization::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 20px;
+        background: linear-gradient(to bottom, transparent, white);
+        pointer-events: none;
+    }
+
+    .body-visualization img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .details-grid {
+        padding: 0;
+        background: white;
+    }
+
+    .detail-section {
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        position: relative;
+        z-index: 2;
+    }
+
+    .workouts-header h2,
+    .measurements-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Çok küçük ekranlar için ek düzenlemeler */
+@media (max-width: 480px) {
+    .body-visualization {
+        max-height: 150px;
+    }
+
+    .body-visualization img {
+        max-height: 150px;
+    }
+
+    .measurement-details-modal {
+        width: 98%;
+        margin: 5px;
+    }
+
+    .modal-content {
+        padding: 0.75rem;
+    }
+
+    .detail-section {
+        padding: 0.5rem;
+    }
+
+    .summary-row {
+        flex-direction: column;
+    }
+
+    .summary-row p {
+        margin: 0.25rem 0;
+    }
+}
+
+/* İstatistikler Sayfası Stilleri */
+.stats-container {
+    padding: 1rem;
+}
+
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.stats-filters {
+    display: flex;
+    gap: 1rem;
+}
+
+.stats-filters select {
+    min-width: 150px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* Özet Kartları */
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+}
+
+.stat-card h3 {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Grafik Alanları */
+.stats-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.chart-container {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-height: 300px;
+}
+
+.chart-container h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Hareket Bazlı İstatistikler */
+.exercise-stats {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.exercise-progress-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+}
+
+.exercise-header {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.exercise-image {
+    height: 300px; /* %50 daha büyük */
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-color);
+}
+
+.exercise-image img {
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.exercise-title {
+    flex: 1;
+}
+
+.exercise-title h4 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+}
+
+.weight-progress {
+    display: flex;
+    flex-direction: column;
+}
+
+.current-max {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.previous-max {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.exercise-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar .progress {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.progress-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-around;
+}
+
+.progress-stat {
+    text-align: center;
+}
+
+.progress-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.progress-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.progress-trend {
+    font-size: 0.9rem;
+}
+
+.trend-up {
+    color: var(--success-color);
+}
+
+.trend-down {
+    color: var(--danger-color);
+}
+
+/* Stats Styles */
+.chart-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .chart-row {
+        flex-direction: column;
+    }
+
+    .chart-container {
+        margin-bottom: 1rem;
+    }
+}
+
+.measurement-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.measurement-actions button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.measurement-actions button i {
+    font-size: 1rem;
+}
+
+/* Egzersiz Modal Tasarımı */
+.exercise-modal {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 500px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+}
+
+/* Modal Başlık */
+.exercise-header {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--background-color);
+}
+
+.exercise-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* Egzersiz Görsel Alanı */
+.exercise-image-container {
+    padding: 1rem;
+    background: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+}
+
+.exercise-image-container img {
+    max-width: 100%;
+    height: 220px;
+    object-fit: contain;
+}
+
+/* Form Alanı */
+.exercise-form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+/* Checkbox Konteynerler */
+.checkbox-container {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.checkbox-container:hover {
+    border-color: var(--primary-color);
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+}
+
+/* Ağırlık Düşüşü Input Alanları */
+.weight-drop-inputs {
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+/* Sonraki Hareket Butonu */
+.next-exercise-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .exercise-modal {
+        max-height: 85vh;
+    }
+
+    .exercise-header h3 {
+        font-size: 1.2rem;
+    }
+
+    .exercise-image-container {
+        min-height: 200px;
+        padding: 0.5rem;
+    }
+
+    .exercise-image-container img {
+        height: 180px;
+    }
+
+    .form-group {
+        margin-bottom: 0.5rem;
+    }
+
+    .checkbox-container {
+        padding: 0.5rem;
+    }
+
+    .next-exercise-btn {
+        padding: 0.75rem;
+    }
+}
+
+/* Dark Mode Uyumluluğu */
+[data-theme="dark"] .exercise-modal {
+    background: var(--card-bg);
+}
+
+[data-theme="dark"] .form-control {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* Antrenman listesi stilleri */
+.workouts-header {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#clearWorkouts {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+#clearWorkouts:hover {
+    opacity: 1;
+}
+
+/* Silme onay modalı */
+.confirm-modal .modal-content {
+    max-width: 400px;
+}
+
+.confirm-modal .btn-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.workouts-list {
+    padding: 1rem;
+}
+
+.workout-card {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.workout-header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.workout-type {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.workout-icon {
+    font-size: 1.5rem;
+}
+
+.workout-name {
+    font-weight: bold;
+}
+
+.workout-info {
+    display: flex;
+    gap: 1rem;
+    color: #666;
+}
+
+.workout-details {
+    display: none;
+    padding: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.workout-details.active {
+    display: block;
+}
+
+.exercise-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.exercise-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.exercise-info h4 {
+    margin: 0 0 0.5rem 0;
+}
+
+.sets-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.set-info {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.sets-summary {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.failure-badge {
+    background: #dc3545;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.cardio-summary {
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    margin-top: 1rem;
+}
+
+.cardio-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.cardio-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.cardio-done {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.cardio-skipped {
+    color: var(--secondary-color);
+}
+
+.cardio-details {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Modern Görsel Efektler */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Mobil menü */
+.mobile-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    padding: 1rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    z-index: 1000;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--light-text);
+    font-size: 0.8rem;
+}
+
+.menu-item i {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+}
+
+/* Erişilebilirlik İyileştirmeleri */
+button, 
+.clickable {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.5rem 1rem;
+}
+
+button:focus,
+a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Grid ve Flex Layouts */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.flex-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Responsive Section Padding */
+.section {
+    padding: 3rem 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .section {
+        padding: 2rem 1rem;
+    }
+    
+    .card {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+}
+
+/* Heading Styles */
+h1 { font-size: var(--h1-size); }
+h2 { font-size: var(--h2-size); }
+
+/* Focus mode styles */
+body.focus-mode .nav-tabs,
+body.focus-mode .workout-type-buttons {
+    display: none;
+}
+
+body.focus-mode .workout-timer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background-color);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Rest timer modal düzenlemesi */
+#restTimerModal .modal-content {
+    max-width: 300px;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+}
+
+/* Cardio section düzenlemesi */
+.cardio-section {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.cardio-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 1.5rem;
+}
+
+.cardio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cardio-question {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+/* Workout timer düzenlemesi */
+.workout-timer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.rest-timer {
+    margin: 2rem 0;
+}
+
+.workout-controls {
+    margin-top: auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.workout-controls .btn {
+    flex: 1;
+}
+
+/* Antrenman Modu Stilleri */
+.workout-mode .workout-type-buttons,
+.workout-mode .nav-tabs {
+    display: none !important;
+}
+
+.workout-mode .workout-timer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timer-display {
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 2rem 0;
+    letter-spacing: 2px;
+}
+
+.workout-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Masaüstü için özel düzenlemeler */
+@media (min-width: 1024px) {
+    .modal-content {
+        padding: 2rem;
+        min-width: 500px;
+    }
+
+    .exercise-image {
+        height: 350px;
+    }
+
+    .form-group {
+        margin-bottom: 2rem;
+    }
+
+    .workout-controls {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .workout-controls .btn {
+        min-width: 150px;
+    }
+
+    .nav-tabs {
+        max-width: 300px;
+    }
+
+    .tab-btn.active {
+        font-size: 1.2rem;
+    }
+
+    /* İstatistikler grid */
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Ölçümler grid */
+    .measurements-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Dark mode için ek düzenlemeler */
+[data-theme="dark"] .modal-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+/* Masaüstü görünümü için grid layout */
+.desktop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+/* Form input readonly durumu için stil */
+.form-control[readonly] {
+    background-color: #f3f4f6 !important;
+    color: #6b7280 !important;
+    cursor: not-allowed;
+} 
