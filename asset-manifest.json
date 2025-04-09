@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/gno-hesaplayici/static/css/main.bf2c64a5.css",
+    "main.js": "/gno-hesaplayici/static/js/main.b478ece5.js",
+    "static/js/453.072dff14.chunk.js": "/gno-hesaplayici/static/js/453.072dff14.chunk.js",
+    "index.html": "/gno-hesaplayici/index.html",
+    "main.bf2c64a5.css.map": "/gno-hesaplayici/static/css/main.bf2c64a5.css.map",
+    "main.b478ece5.js.map": "/gno-hesaplayici/static/js/main.b478ece5.js.map",
+    "453.072dff14.chunk.js.map": "/gno-hesaplayici/static/js/453.072dff14.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bf2c64a5.css",
+    "static/js/main.b478ece5.js"
+  ]
+}
