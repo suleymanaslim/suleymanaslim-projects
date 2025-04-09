@@ -1,23 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import GnoCalculator from './components/GnoCalculator';
+import { Gauge } from 'lucide-react';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gray-100 p-6">
+    <h1 className="text-4xl font-bold mb-8 text-center text-blue-700">🎓 GNO / YNO Hesaplayıcı</h1>
+      <GnoCalculator />
     </div>
   );
 }
